@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexora — The AI System That Runs Your Business Automatically</title>
+<meta name="description" content="Nexora captures every lead, responds instantly, and converts more clients automatically.">
+<meta property="og:title" content="Nexora — AI Lead Conversion System">
+<meta name="theme-color" content="#03030a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'><polygon points='17,2 30,9.5 30,24.5 17,32 4,24.5 4,9.5' fill='none' stroke='%2338bdf8' stroke-width='1.5'/><polygon points='17,9 24,23 10,23' fill='%23ffffff' opacity='.9'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--black:#03030a;--white:#f0f0f8;--blue:#38bdf8;--blue-mid:#0ea5e9;--glow-sm:0 0 28px rgba(56,189,248,.28);--glow-md:0 0 56px rgba(56,189,248,.32),0 0 112px rgba(56,189,248,.1);--gray-950:#07070f;--gray-900:#0d0d16;--gray-800:#13131f;--gray-700:#1a1a28;--gray-600:#242436;--gray-400:#48486a;--gray-300:#68688c;--gray-200:#9292b4;--border:rgba(255,255,255,.055);--border-b:rgba(56,189,248,.18);--border-bh:rgba(56,189,248,.42);--r-sm:6px;--r-md:10px;--r-lg:14px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:80px;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;cursor:none;animation:pagein .6s ease both;}
+@keyframes pagein{from{opacity:0;}to{opacity:1;}}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.06;}
+a{cursor:none;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.02;pointer-events:none;z-index:9001;}
+#cur{width:7px;height:7px;background:var(--blue);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:screen;box-shadow:var(--glow-sm);transition:width .18s,height .18s;}
+#ring{width:34px;height:34px;border:1px solid rgba(56,189,248,.3);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width .3s cubic-bezier(.34,1.56,.64,1),height .3s cubic-bezier(.34,1.56,.64,1);}
+body.hov #cur{width:13px;height:13px;background:#fff;box-shadow:var(--glow-md);}
+body.hov #ring{width:52px;height:52px;border-color:rgba(56,189,248,.55);}
+#canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .45s cubic-bezier(.4,0,.2,1);}
+nav.scrolled{padding:13px 60px;background:rgba(3,3,10,.92);backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid var(--border);box-shadow:0 4px 32px rgba(0,0,0,.5);}
+.nlogo{display:flex;align-items:center;gap:13px;text-decoration:none;}
+.nlogo span{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.2em;color:var(--white);}
+.nlinks{display:flex;gap:36px;list-style:none;align-items:center;}
+.nlinks a{color:var(--gray-300);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;transition:color .22s;position:relative;}
+.nlinks a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--blue),rgba(56,189,248,.3));transform:scaleX(0);transition:transform .3s;transform-origin:left;}
+.nlinks a:hover{color:var(--white);}
+.nlinks a:hover::after{transform:scaleX(1);}
+.ncta{background:var(--blue-mid)!important;color:var(--black)!important;border:none!important;padding:9px 22px!important;border-radius:3px;font-size:11px!important;font-weight:700;letter-spacing:.1em;transition:all .28s!important;font-family:'Syne',sans-serif!important;}
+.ncta::after{display:none!important;}
+.ncta:hover{background:var(--blue)!important;box-shadow:var(--glow-md)!important;transform:translateY(-1px);}
+.ltog{display:flex;align-items:center;border:1px solid var(--border);border-radius:3px;overflow:hidden;}
+.lbtn{background:transparent;border:none;color:var(--gray-300);font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;padding:7px 11px;cursor:none;transition:all .2s;line-height:1;}
+.lbtn.on{background:var(--blue);color:var(--black);}
+section{position:relative;z-index:1;}
+.wrap{max-width:1100px;margin:0 auto;padding:140px 60px;}
+.wrap-c{max-width:1100px;margin:0 auto;padding:140px 60px;text-align:center;}
+.ey{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:24px;}
+.ey::before{content:'';width:20px;height:1px;background:linear-gradient(90deg,var(--blue),rgba(56,189,248,.3));}
+.ey::after{content:'';width:4px;height:4px;background:var(--blue);border-radius:50%;animation:edot 2.4s ease-in-out infinite;}
+@keyframes edot{0%,100%{opacity:.4;transform:scale(.7);}50%{opacity:1;transform:scale(1.2);}}
+.r{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.4,0,.2,1);}
+.r.in{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+.gl{height:1px;background:linear-gradient(90deg,transparent,rgba(56,189,248,.38) 35%,rgba(56,189,248,.65) 50%,rgba(56,189,248,.38) 65%,transparent);box-shadow:0 0 16px rgba(56,189,248,.1);}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--blue-mid);color:var(--black);padding:16px 36px;border-radius:3px;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:.08em;text-decoration:none;text-transform:uppercase;transition:all .3s;position:relative;overflow:hidden;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);transform:translateX(-100%);transition:transform .55s;}
+.btn-primary:hover::before{transform:translateX(100%);}
+.btn-primary:hover{box-shadow:var(--glow-md);transform:translateY(-2px);background:var(--blue);}
+.btn-primary svg{width:14px;height:14px;transition:transform .28s;}
+.btn-primary:hover svg{transform:translateX(4px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--gray-200);padding:16px 32px;border-radius:3px;border:1px solid var(--border);font-family:'Syne',sans-serif;font-weight:600;font-size:12px;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;transition:all .28s;}
+.btn-ghost:hover{border-color:var(--border-b);color:var(--white);background:rgba(56,189,248,.04);}
+.btn-micro{font-size:12px;color:var(--gray-400);margin-top:14px;display:block;letter-spacing:.04em;}
+#home{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 60px 100px;overflow:hidden;}
+#home::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(14,165,233,.1) 0%,transparent 65%);pointer-events:none;z-index:0;animation:hglow 7s ease-in-out infinite alternate;}
+@keyframes hglow{from{opacity:.6;transform:translateX(-50%) scale(1);}to{opacity:1;transform:translateX(-50%) scale(1.1);}}
+#home>*:not(#hparts){position:relative;z-index:1;}
+.hbadge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(56,189,248,.2);color:var(--gray-200);font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:7px 18px 7px 10px;border-radius:100px;margin-bottom:48px;background:rgba(56,189,248,.04);backdrop-filter:blur(10px);position:relative;overflow:hidden;}
+.hbadge::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(56,189,248,.14),transparent);animation:bshim 3.5s ease-in-out infinite;}
+@keyframes bshim{0%,100%{left:-100%;}60%{left:160%;}}
+.bdot{width:18px;height:18px;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.bdot::after{content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(.55);opacity:.35;}}
+.htitle{font-size:clamp(52px,7.5vw,108px);font-weight:800;letter-spacing:-.042em;line-height:.94;margin-bottom:32px;max-width:960px;}
+.l1{display:block;color:var(--white);}
+.l2{display:block;background:linear-gradient(90deg,var(--blue) 0%,#bae6fd 45%,var(--blue) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shim 4s linear infinite;}
+@keyframes shim{to{background-position:200% center;}}
+.l3{display:block;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.12);}
+.hsub{font-size:19px;color:var(--gray-300);max-width:520px;font-weight:300;line-height:1.75;margin:0 auto 12px;}
+.hpromise{font-size:14px;color:var(--gray-400);margin:0 auto 48px;letter-spacing:.02em;}
+.hacts{display:flex;flex-direction:column;align-items:center;}
+.hacts-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.hstats{display:flex;gap:0;justify-content:center;margin-top:88px;max-width:720px;width:100%;position:relative;border-radius:8px;overflow:hidden;backdrop-filter:blur(14px);background:rgba(255,255,255,.013);}
+.hstats::before{content:'';position:absolute;inset:0;border-radius:8px;padding:1px;background:linear-gradient(135deg,rgba(56,189,248,.35),rgba(255,255,255,.04) 50%,rgba(56,189,248,.16));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;}
+.si{flex:1;padding:26px 16px;text-align:center;border-right:1px solid var(--border);transition:background .3s;}
+.si:last-child{border-right:none;}
+.si:hover{background:rgba(56,189,248,.04);}
+.sn{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--white);line-height:1;display:block;}
+.sn em{color:var(--blue);font-style:normal;}
+.sl{font-size:10px;color:var(--gray-400);letter-spacing:.13em;text-transform:uppercase;margin-top:5px;display:block;}
+.mq{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;position:relative;z-index:1;background:var(--gray-950);}
+.mq::before,.mq::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none;}
+.mq::before{left:0;background:linear-gradient(90deg,var(--gray-950),transparent);}
+.mq::after{right:0;background:linear-gradient(-90deg,var(--gray-950),transparent);}
+.mtrack{display:flex;gap:56px;animation:mq 32s linear infinite;width:max-content;}
+.mi{display:flex;align-items:center;gap:11px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-400);white-space:nowrap;}
+.mi::before{content:'';width:3px;height:3px;background:var(--blue);border-radius:50%;opacity:.55;}
+@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.prob-title{font-size:clamp(36px,4.5vw,62px);font-weight:800;letter-spacing:-.025em;margin-bottom:20px;}
+.prob-text{font-size:18px;color:var(--gray-300);font-weight:300;line-height:1.85;max-width:600px;margin:0 auto 64px;}
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:var(--r-md);overflow:hidden;max-width:700px;margin:0 auto;}
+.ba-card{padding:40px 36px;}
+.ba-card.before{background:rgba(255,255,255,.03);border:1px solid var(--border);}
+.ba-card.after{background:rgba(56,189,248,.06);border:1px solid var(--border-b);}
+.ba-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px;display:block;font-weight:600;}
+.ba-card.before .ba-label{color:var(--gray-400);}
+.ba-card.after .ba-label{color:var(--blue);}
+.ba-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;font-size:14px;color:var(--gray-300);}
+.ba-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.ba-card.before .ba-dot{background:var(--gray-600);}
+.ba-card.after .ba-dot{background:var(--blue);box-shadow:0 0 8px rgba(56,189,248,.5);}
+.ba-card.after .ba-item{color:var(--white);}
+.sys-visual{background:var(--gray-900);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;max-width:860px;margin:0 auto;}
+.sys-topbar{background:var(--gray-950);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:8px;}
+.dot{width:10px;height:10px;border-radius:50%;}
+.dr{background:#ff5f57;}.dy{background:#febc2e;}.dg{background:#28c840;}
+.sys-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-left:8px;}
+.chat-window{padding:28px;display:flex;flex-direction:column;gap:14px;min-height:280px;}
+.chat-msg{max-width:72%;padding:13px 18px;border-radius:12px;font-size:14px;line-height:1.6;}
+.chat-msg.lead{background:rgba(255,255,255,.07);border:1px solid var(--border);align-self:flex-start;color:var(--white);}
+.chat-msg.ai{background:rgba(56,189,248,.12);border:1px solid var(--border-b);align-self:flex-end;color:var(--white);}
+.chat-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:block;}
+.chat-msg.lead .chat-tag{color:var(--gray-400);}
+.chat-msg.ai .chat-tag{color:var(--blue);}
+.chat-time{font-size:11px;color:var(--gray-400);margin-top:4px;display:block;}
+.chat-msg.ai .chat-time{text-align:right;}
+.chat-status{display:flex;align-items:center;gap:8px;padding:14px 28px;border-top:1px solid var(--border);background:rgba(56,189,248,.03);}
+.status-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 1.5s infinite;}
+.status-text{font-size:12px;color:var(--blue);letter-spacing:.06em;}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;margin-top:64px;}
+.step-card{background:var(--gray-950);padding:36px 28px;position:relative;overflow:hidden;transition:background .35s;}
+.step-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);transform:scaleX(0);transition:transform .5s;}
+.step-card:hover{background:rgba(56,189,248,.025);}
+.step-card:hover::before{transform:scaleX(1);}
+.step-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.12em;margin-bottom:20px;display:block;}
+.step-icon{width:40px;height:40px;border:1px solid var(--border-b);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;background:rgba(56,189,248,.05);color:var(--blue);transition:box-shadow .3s;}
+.step-card:hover .step-icon{box-shadow:0 0 14px rgba(56,189,248,.22);}
+.step-card h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+.step-card p{font-size:13px;color:var(--gray-300);line-height:1.78;}
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px;}
+.metric-card{background:var(--gray-900);border:1px solid var(--border);border-radius:var(--r-md);padding:40px 32px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s;}
+.metric-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top,rgba(56,189,248,.05) 0%,transparent 70%);opacity:0;transition:opacity .35s;}
+.metric-card:hover{border-color:var(--border-b);transform:translateY(-4px);}
+.metric-card:hover::before{opacity:1;}
+.metric-num{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:var(--blue);line-height:1;display:block;margin-bottom:10px;}
+.metric-label{font-size:15px;font-weight:600;margin-bottom:8px;}
+.metric-sub{font-size:13px;color:var(--gray-300);}
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;}
+.tc{background:var(--gray-950);padding:38px 30px;position:relative;overflow:hidden;transition:background .38s;}
+.tcg{position:absolute;top:-60px;left:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(56,189,248,.07) 0%,transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none;}
+.tc:hover{background:rgba(56,189,248,.02);}
+.tc:hover .tcg{opacity:1;}
+.tc::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(56,189,248,.65),transparent);transform:scaleX(0);transition:transform .55s;}
+.tc:hover::after{transform:scaleX(1);}
+.tnum{position:absolute;top:24px;right:24px;font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:rgba(255,255,255,.022);line-height:1;}
+.tic{width:40px;height:40px;border:1px solid var(--border-b);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;background:rgba(56,189,248,.045);color:var(--blue);transition:box-shadow .3s;}
+.tc:hover .tic{box-shadow:0 0 14px rgba(56,189,248,.22);}
+.tc h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+.tc p{font-size:13px;color:var(--gray-300);line-height:1.8;}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;margin-top:64px;}
+.pc{background:var(--gray-800);border:1px solid var(--border);border-radius:var(--r-md);padding:36px;position:relative;transition:transform .3s;}
+.pc:hover{transform:translateY(-5px);}
+.pc.pop{border-color:transparent;background:linear-gradient(160deg,rgba(56,189,248,.08) 0%,var(--gray-800) 50%);}
+.pc.pop::before{content:'';position:absolute;inset:0;border-radius:var(--r-md);padding:1px;background:conic-gradient(from var(--angle,0deg),rgba(56,189,248,.7),rgba(56,189,248,.1) 40%,rgba(56,189,248,.5) 60%,rgba(56,189,248,.7));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;animation:rotborder 4s linear infinite;}
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
+@keyframes rotborder{to{--angle:360deg;}}
+.ptag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--blue-mid);color:var(--black);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 15px;border-radius:100px;white-space:nowrap;box-shadow:var(--glow-sm);}
+.ptier{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray-400);margin-bottom:5px;display:block;}
+.pc h3{font-size:20px;font-weight:800;margin-bottom:12px;}
+.pc-desc{font-size:13px;color:var(--gray-300);margin-bottom:28px;line-height:1.7;}
+.pdiv{height:1px;background:var(--border);margin-bottom:22px;}
+.pfl{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:30px;}
+.pfl li{font-size:13px;color:var(--gray-300);display:flex;align-items:flex-start;gap:9px;line-height:1.5;}
+.pfl li::before{content:'\2713';color:var(--blue);font-weight:700;flex-shrink:0;}
+.pfl li.off{opacity:.28;}
+.pfl li.off::before{content:'\2014';color:var(--gray-400);}
+.bplan{display:block;text-align:center;padding:13px;border-radius:4px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;text-decoration:none;transition:all .28s;border:1px solid var(--border);color:var(--gray-200);}
+.bplan:hover{border-color:var(--border-b);color:var(--white);background:rgba(56,189,248,.06);}
+.pc.pop .bplan{background:var(--blue-mid);color:var(--black);border-color:var(--blue-mid);}
+.pc.pop .bplan:hover{background:var(--blue);border-color:var(--blue);box-shadow:var(--glow-md);}
+.urgency-bar{background:rgba(56,189,248,.06);border:1px solid var(--border-b);border-radius:8px;padding:18px 28px;display:flex;align-items:center;gap:14px;max-width:620px;margin:40px auto 0;}
+.urgency-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;flex-shrink:0;animation:pulse 1.5s infinite;}
+.urgency-text{font-size:13px;color:var(--gray-200);}
+.cta-title{font-size:clamp(36px,5vw,68px);font-weight:800;letter-spacing:-.03em;margin-bottom:20px;line-height:1.05;}
+.cta-title em{color:var(--blue);font-style:normal;}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(14,165,233,.08) 0%,transparent 70%);pointer-events:none;}
+.cgrid{display:grid;grid-template-columns:1fr 1.2fr;gap:76px;align-items:start;}
+.cch{display:flex;gap:15px;align-items:center;padding:18px;border:1px solid var(--border);border-radius:8px;margin-bottom:12px;transition:border-color .28s,background .28s,transform .28s;text-decoration:none;position:relative;overflow:hidden;}
+.cch::after{content:'\2197';position:absolute;right:18px;top:50%;transform:translateY(-50%) translateX(8px);opacity:0;color:var(--blue);font-size:15px;transition:opacity .22s,transform .22s;}
+.cch:hover{border-color:var(--border-b);background:rgba(56,189,248,.035);transform:translateX(4px);}
+.cch:hover::after{opacity:1;transform:translateY(-50%) translateX(0);}
+.ci{width:40px;height:40px;background:rgba(56,189,248,.055);border:1px solid var(--border-b);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0;}
+.cl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:2px;}
+.cv{font-size:14px;color:var(--white);font-weight:500;}
+.cform{display:flex;flex-direction:column;gap:13px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);}
+.fg input,.fg select,.fg textarea{background:var(--gray-800);border:1px solid var(--border);border-radius:5px;padding:12px 15px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .22s,box-shadow .22s;-webkit-appearance:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(56,189,248,.42);box-shadow:0 0 0 3px rgba(56,189,248,.065);}
+.fg select option{background:var(--gray-800);}
+.fg textarea{resize:vertical;min-height:108px;}
+.bsend{display:inline-flex;align-items:center;gap:10px;background:var(--blue-mid);color:var(--black);border:none;cursor:none;padding:14px 30px;border-radius:3px;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;transition:all .3s;align-self:flex-start;position:relative;overflow:hidden;}
+.bsend::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);transform:translateX(-100%);transition:transform .52s;}
+.bsend:hover::before{transform:translateX(100%);}
+.bsend:hover{box-shadow:var(--glow-md);transform:translateY(-2px);}
+footer{background:var(--gray-950);border-top:1px solid var(--border);padding:38px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.fbr{display:flex;align-items:center;gap:11px;}
+.fn{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:.16em;opacity:.3;}
+.fln{display:flex;gap:26px;}
+.fln a{font-size:10px;color:var(--gray-400);text-decoration:none;letter-spacing:.09em;transition:color .2s;}
+.fln a:hover{color:var(--blue);}
+footer p{font-size:11px;color:var(--gray-400);}
+#chat-widget{position:fixed;bottom:28px;right:28px;z-index:800;}
+.chat-bubble{width:54px;height:54px;background:var(--blue-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;box-shadow:var(--glow-md);transition:transform .28s;animation:chatpulse 3s ease-in-out infinite;}
+@keyframes chatpulse{0%,100%{box-shadow:var(--glow-sm);}50%{box-shadow:var(--glow-md);}}
+.chat-bubble:hover{transform:scale(1.08);}
+.chat-panel{position:absolute;bottom:68px;right:0;width:320px;background:var(--gray-800);border:1px solid var(--border-b);border-radius:var(--r-lg);overflow:hidden;display:none;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.6);}
+.chat-panel.open{display:flex;}
+.chat-panel-head{background:var(--gray-900);padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.chat-avatar{width:32px;height:32px;background:rgba(56,189,248,.1);border:1px solid var(--border-b);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);}
+.chat-name{font-size:13px;font-weight:600;}
+.chat-status2{font-size:11px;color:var(--blue);}
+.chat-messages{padding:16px;display:flex;flex-direction:column;gap:10px;min-height:180px;max-height:240px;overflow-y:auto;}
+.cmsg{font-size:13px;line-height:1.6;padding:10px 14px;border-radius:10px;max-width:90%;}
+.cmsg.bot{background:rgba(56,189,248,.1);border:1px solid var(--border-b);color:var(--white);align-self:flex-start;}
+.cmsg.user{background:var(--blue-mid);color:var(--black);align-self:flex-end;font-weight:500;}
+.chat-options{padding:12px 16px;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border);}
+.chat-opt{background:transparent;border:1px solid var(--border-b);color:var(--blue);padding:9px 14px;border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;cursor:none;transition:all .22s;text-align:left;}
+.chat-opt:hover{background:rgba(56,189,248,.08);border-color:var(--blue);}
+.hp{position:absolute;width:2px;height:2px;background:var(--blue);border-radius:50%;opacity:0;pointer-events:none;animation:fup var(--d,8s) ease-in var(--dl,0s) infinite;}
+@keyframes fup{0%{transform:translateY(60px) translateX(0);opacity:0;}10%{opacity:.5;}90%{opacity:.12;}100%{transform:translateY(-120px) translateX(var(--dx,20px));opacity:0;}}
+a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px;}
+::selection{background:rgba(56,189,248,.22);color:var(--white);}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--gray-950);}
+::-webkit-scrollbar-thumb{background:var(--gray-600);border-radius:3px;}
+@media(max-width:960px){
+  nav{padding:15px 22px;}nav.scrolled{padding:11px 22px;}.nlinks{display:none;}
+  .wrap,.wrap-c{padding:80px 22px;}#home{padding:110px 22px 56px;}
+  .tech-grid,.steps-grid,.pgrid,.cgrid,.metrics-grid,.before-after{grid-template-columns:1fr;}
+  .frow{grid-template-columns:1fr;}footer{padding:22px;flex-direction:column;align-items:flex-start;}
+  .hstats{flex-direction:column;max-width:280px;}.si{border-right:none;border-bottom:1px solid var(--border);}
+  .si:last-child{border-bottom:none;}.chat-panel{width:calc(100vw - 48px);right:-4px;}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="ring"></div>
+<canvas id="canvas"></canvas>
+<nav id="nav">
+  <a href="#home" class="nlogo">
+    <svg width="30" height="30" viewBox="0 0 34 34" fill="none"><polygon points="17,2 30,9.5 30,24.5 17,32 4,24.5 4,9.5" fill="none" stroke="rgba(255,255,255,.88)" stroke-width="1.2" stroke-linejoin="round"/><polygon points="17,9 24,23 10,23" fill="white" opacity=".9"/><polygon points="17,32 24,23 10,23" fill="white" opacity=".32"/><circle cx="17" cy="2" r="2" fill="white"/><circle cx="30" cy="9.5" r="1.4" fill="white" opacity=".7"/><circle cx="30" cy="24.5" r="1.4" fill="white" opacity=".7"/><circle cx="17" cy="32" r="1.4" fill="white" opacity=".7"/><circle cx="4" cy="24.5" r="1.4" fill="white" opacity=".7"/><circle cx="4" cy="9.5" r="1.4" fill="white" opacity=".7"/></svg>
+    <span>NEXORA</span>
+  </a>
+  <ul class="nlinks">
+    <li><a href="#system">System</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#technology">Technology</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="http://calendly.com/nexorasystems" target="_blank" class="ncta">Book a Demo</a></li>
+  </ul>
+  <div class="ltog"><button class="lbtn on" onclick="setLang('en')">EN</button><button class="lbtn" onclick="setLang('es')">ES</button></div>
+</nav>
+<section id="home">
+  <div id="hparts" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;"></div>
+  <div class="hbadge r"><div class="bdot"></div>AI-Powered Lead Conversion System</div>
+  <h1 class="htitle r d1"><span class="l1">The AI system that runs</span><span class="l2">your business automatically.</span><span class="l3">Every lead. Every time.</span></h1>
+  <p class="hsub r d2">Capture every lead. Respond instantly. Convert more clients without manual work.</p>
+  <p class="hpromise r d2">Respond to every lead instantly and convert more clients automatically.</p>
+  <div class="hacts r d3">
+    <div class="hacts-row">
+      <a href="http://calendly.com/nexorasystems" target="_blank" class="btn-primary">Book a Demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#system" class="btn-ghost">See How It Works</a>
+    </div>
+    <span class="btn-micro">Takes less than 2 minutes to schedule</span>
+  </div>
+  <div class="hstats r d4">
+    <div class="si"><span class="sn">&lt;<em>60s</em></span><span class="sl">Response time</span></div>
+    <div class="si"><span class="sn">2<em>&times;</em></span><span class="sl">More booked calls</span></div>
+    <div class="si"><span class="sn">24<em>/7</em></span><span class="sl">Always running</span></div>
+    <div class="si"><span class="sn">0</span><span class="sl">Manual replies</span></div>
+  </div>
+</section>
+<div class="mq"><div class="mtrack"><span class="mi">Nexora LeadFlow System</span><span class="mi">AI Response Engine</span><span class="mi">Lead Qualification</span><span class="mi">Automatic Booking</span><span class="mi">WhatsApp Automation</span><span class="mi">Instagram Capture</span><span class="mi">CRM Intelligence</span><span class="mi">Nexora Growth Engine</span><span class="mi">Data Pipeline</span><span class="mi">Conversion Architecture</span><span class="mi">24/7 Lead Capture</span><span class="mi">Smart Qualification</span><span class="mi">Nexora LeadFlow System</span><span class="mi">AI Response Engine</span><span class="mi">Lead Qualification</span><span class="mi">Automatic Booking</span><span class="mi">WhatsApp Automation</span><span class="mi">Instagram Capture</span><span class="mi">CRM Intelligence</span><span class="mi">Nexora Growth Engine</span><span class="mi">Data Pipeline</span><span class="mi">Conversion Architecture</span><span class="mi">24/7 Lead Capture</span><span class="mi">Smart Qualification</span></div></div>
+<div class="gl"></div>
+<section id="problem" style="background:var(--gray-950);">
+  <div class="wrap-c">
+    <span class="ey r">The problem</span>
+    <h2 class="prob-title r d1">Most businesses lose leads before they even reply</h2>
+    <p class="prob-text r d2">Customers expect instant responses. Most businesses take hours. Every delay is lost revenue.</p>
+    <div class="before-after r d3">
+      <div class="ba-card before"><span class="ba-label">Before Nexora</span><div class="ba-item"><div class="ba-dot"></div>Lead sends a DM on Instagram</div><div class="ba-item"><div class="ba-dot"></div>Business replies 4 hours later</div><div class="ba-item"><div class="ba-dot"></div>Lead already booked a competitor</div><div class="ba-item"><div class="ba-dot"></div>Revenue lost. Forever.</div></div>
+      <div class="ba-card after"><span class="ba-label">After Nexora</span><div class="ba-item"><div class="ba-dot"></div>Lead sends a DM on Instagram</div><div class="ba-item"><div class="ba-dot"></div>AI replies in under 60 seconds</div><div class="ba-item"><div class="ba-dot"></div>Lead is qualified automatically</div><div class="ba-item"><div class="ba-dot"></div>Call booked. Client converted.</div></div>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+<section id="system">
+  <div class="wrap-c">
+    <span class="ey r">The solution</span>
+    <h2 class="r d1" style="font-size:clamp(36px,4.5vw,62px);font-weight:800;letter-spacing:-.025em;margin-bottom:20px;">Meet the Nexora System</h2>
+    <p class="r d2" style="font-size:17px;color:var(--gray-300);font-weight:300;max-width:560px;margin:0 auto 64px;line-height:1.85;">An AI-powered automation platform that captures, qualifies, and converts your leads automatically &mdash; while you focus on growing your business.</p>
+    <div class="sys-visual r d3">
+      <div class="sys-topbar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><span class="sys-label">Nexora LeadFlow System &mdash; Live</span></div>
+      <div class="chat-window">
+        <div class="chat-msg lead"><span class="chat-tag">Lead &mdash; Instagram DM</span>Hi, I saw your post. How much does a consultation cost?<span class="chat-time">2:47 PM</span></div>
+        <div class="chat-msg ai"><span class="chat-tag">Nexora AI &mdash; 8 seconds later</span>Hi! Thanks for reaching out. Our consultations start at $150. We have availability this week &mdash; would you like me to send you a booking link?<span class="chat-time">Delivered</span></div>
+        <div class="chat-msg lead"><span class="chat-tag">Lead</span>Yes please, that would be great!<span class="chat-time">2:49 PM</span></div>
+        <div class="chat-msg ai"><span class="chat-tag">Nexora AI &mdash; Instant</span>Here is your booking link: calendly.com/nexorasystems &mdash; I have reserved a slot for you. See you soon!<span class="chat-time">Delivered &middot; Lead qualified &middot; Call booked</span></div>
+      </div>
+      <div class="chat-status"><div class="status-dot"></div><span class="status-text">Nexora System active &mdash; monitoring 4 channels &mdash; 0 leads missed today</span></div>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+<section id="process" style="background:var(--gray-950);">
+  <div class="wrap-c">
+    <span class="ey r">How it works</span>
+    <h2 class="r d1" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;max-width:660px;margin-left:auto;margin-right:auto;">Four steps. Fully automatic.</h2>
+    <p class="r d2" style="font-size:16px;color:var(--gray-300);max-width:480px;margin:0 auto;font-weight:300;line-height:1.88;">From the first message to a booked call &mdash; the Nexora System handles everything.</p>
+    <div class="steps-grid r d3">
+      <div class="step-card"><span class="step-num">STEP 01</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><h3>Lead Capture</h3><p>Captures inquiries from Instagram, WhatsApp, and your website automatically &mdash; 24 hours a day.</p></div>
+      <div class="step-card"><span class="step-num">STEP 02</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><h3>Instant Response</h3><p>Replies in seconds with human-like AI conversations, tailored to your business and tone.</p></div>
+      <div class="step-card"><span class="step-num">STEP 03</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3>Smart Qualification</h3><p>Identifies serious buyers automatically. Only high-intent leads move forward in your pipeline.</p></div>
+      <div class="step-card"><span class="step-num">STEP 04</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><h3>Automatic Booking</h3><p>Books calls directly into your calendar. No back-and-forth. No manual scheduling.</p></div>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+<section id="results">
+  <div class="wrap-c">
+    <span class="ey r">Real impact</span>
+    <h2 class="r d1" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;">Real business results</h2>
+    <p class="r d2" style="font-size:17px;color:var(--gray-300);font-weight:300;max-width:480px;margin:0 auto;line-height:1.85;">Businesses using the Nexora System see measurable results within the first 30 days.</p>
+    <div class="metrics-grid">
+      <div class="metric-card r d1"><span class="metric-num">&lt;60s</span><div class="metric-label">Response to every lead</div><div class="metric-sub">Before Nexora: 4+ hours on average. After: instant, every time.</div></div>
+      <div class="metric-card r d2"><span class="metric-num">2&times;</span><div class="metric-label">More booked calls</div><div class="metric-sub">More leads qualified, more calls scheduled, more clients converted.</div></div>
+      <div class="metric-card r d3"><span class="metric-num">24/7</span><div class="metric-label">Lead capture, always on</div><div class="metric-sub">The system works while you sleep. No lead is ever missed again.</div></div>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+<section id="technology" style="background:var(--gray-950);">
+  <div class="wrap">
+    <span class="ey r">The architecture</span>
+    <h2 class="r d1" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;max-width:660px;">Enterprise-grade AI infrastructure</h2>
+    <p class="r d2" style="font-size:16px;color:var(--gray-300);max-width:500px;font-weight:300;line-height:1.88;margin-bottom:60px;">The Nexora Platform is built on the same technology stack powering the world&rsquo;s fastest-growing companies.</p>
+    <div class="tech-grid">
+      <div class="tc r"><div class="tcg"></div><div class="tnum">01</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><h3>AI Conversation Engine</h3><p>GPT-4o powers every conversation &mdash; context-aware, multilingual, indistinguishable from a human agent.</p></div>
+      <div class="tc r d1"><div class="tcg"></div><div class="tnum">02</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Automation Architecture</h3><p>300+ integrations. Unlimited workflows. The entire lead pipeline runs without a single manual step.</p></div>
+      <div class="tc r d2"><div class="tcg"></div><div class="tnum">03</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Data Intelligence</h3><p>Every interaction synced in real-time to your CRM. Full pipeline visibility, zero manual data entry.</p></div>
+      <div class="tc r d1"><div class="tcg"></div><div class="tnum">04</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.08 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div><h3>Omnichannel Platform</h3><p>WhatsApp, Instagram, email &mdash; one unified system handles all channels simultaneously.</p></div>
+      <div class="tc r d2"><div class="tcg"></div><div class="tnum">05</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3>Lead Scoring Engine</h3><p>Every prospect analyzed and scored in real-time. Only high-intent leads enter your pipeline.</p></div>
+      <div class="tc r d3"><div class="tcg"></div><div class="tnum">06</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><h3>Booking Automation</h3><p>Calendar integration closes every cycle. When a lead is ready, the system books the call automatically.</p></div>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+<section id="pricing">
+  <div class="wrap-c">
+    <span class="ey r">Choose your system</span>
+    <h2 class="r d1" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;">One investment. Permanent results.</h2>
+    <p class="r d2" style="font-size:16px;color:var(--gray-300);max-width:480px;margin:0 auto;font-weight:300;line-height:1.88;">One-time setup. No monthly fees. The system is yours completely.</p>
+    <div class="pgrid">
+      <div class="pc r"><span class="ptier">Basic</span><h3>Nexora Growth Engine</h3><p class="pc-desc">For businesses ready to stop losing leads to slow response times.</p><div class="pdiv"></div><ul class="pfl"><li>Lead capture (1 channel)</li><li>AI qualification system</li><li>Automated response engine</li><li>CRM intelligence setup</li><li>30-day optimization</li><li class="off">Omnichannel platform</li><li class="off">Automatic booking system</li></ul><a href="http://calendly.com/nexorasystems" target="_blank" class="bplan">Book a Demo</a></div>
+      <div class="pc pop r d1"><span class="ptag">Most installed</span><span class="ptier">Professional</span><h3>Nexora LeadFlow System</h3><p class="pc-desc">For growing businesses scaling their lead conversion automatically.</p><div class="pdiv"></div><ul class="pfl"><li>Lead capture (3 channels)</li><li>AI qualification + scoring</li><li>Omnichannel response platform</li><li>Automatic booking engine</li><li>Full CRM data intelligence</li><li>60-day optimization</li><li>Priority deployment</li></ul><a href="http://calendly.com/nexorasystems" target="_blank" class="bplan">Book a Demo</a></div>
+      <div class="pc r d2"><span class="ptier">Enterprise</span><h3>Nexora Growth Engine Pro</h3><p class="pc-desc">For high-volume operations that need a complete AI infrastructure.</p><div class="pdiv"></div><ul class="pfl"><li>Everything in LeadFlow</li><li>All channels (WA + IG + Email)</li><li>Custom AI personality</li><li>Client onboarding automation</li><li>Payment integration</li><li>Operations dashboard</li><li>90-day optimization</li></ul><a href="http://calendly.com/nexorasystems" target="_blank" class="bplan">Book a Demo</a></div>
+    </div>
+    <div class="urgency-bar r d3"><div class="urgency-dot"></div><span class="urgency-text">We are currently onboarding a limited number of clients this month. Spots are limited.</span></div>
+  </div>
+</section>
+<div class="gl"></div>
+<section id="cta" style="background:var(--gray-950);text-align:center;">
+  <div class="wrap-c" style="position:relative;">
+    <div class="cta-glow"></div>
+    <div class="r" style="max-width:700px;margin:0 auto;">
+      <span class="ey" style="justify-content:center;">Ready to install</span>
+      <h2 class="cta-title">Your AI team<br>is <em>ready.</em></h2>
+      <p style="font-size:17px;color:var(--gray-300);font-weight:300;margin-bottom:48px;line-height:1.75;">Start capturing and converting leads automatically today. See how Nexora works in a short demo.</p>
+      <a href="http://calendly.com/nexorasystems" target="_blank" class="btn-primary" style="font-size:14px;padding:18px 44px;">Book a Demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <span class="btn-micro" style="margin-top:16px;">Takes less than 2 minutes &middot; No commitment required</span>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+<section id="contact" style="border-top:1px solid var(--border);">
+  <div class="wrap">
+    <div class="cgrid">
+      <div class="r">
+        <span class="ey">Get in touch</span>
+        <h2 style="font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;font-family:'Syne',sans-serif;">Have questions?<br>We respond fast.</h2>
+        <p style="font-size:15px;color:var(--gray-300);line-height:1.88;margin-bottom:38px;">Tell us about your business. We will get back to you within a few hours.</p>
+        <a href="https://wa.me/50671103840" target="_blank" class="cch"><div class="ci"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><div><div class="cl">WhatsApp</div><div class="cv">+506 7110-3840</div></div></a>
+        <a href="mailto:hello@nexorasystems.lat" class="cch"><div class="ci"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="cl">Email</div><div class="cv">hello@nexorasystems.lat</div></div></a>
+        <a href="http://calendly.com/nexorasystems" target="_blank" class="cch"><div class="ci"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><div class="cl">Book a demo</div><div class="cv">calendly.com/nexorasystems</div></div></a>
+      </div>
+      <div class="r d1">
+        <div class="cform">
+          <div class="frow"><div class="fg"><label>First name</label><input type="text" placeholder="Ana"></div><div class="fg"><label>Last name</label><input type="text" placeholder="Garc&iacute;a"></div></div>
+          <div class="fg"><label>Business email</label><input type="email" placeholder="ana@tuempresa.com"></div>
+          <div class="fg"><label>Business name</label><input type="text" placeholder="Cl&iacute;nica Est&eacute;tica XYZ"></div>
+          <div class="fg"><label>Industry</label><select><option value="">Select your industry</option><option>Clinic / Health</option><option>Real Estate</option><option>Restaurant / Events</option><option>Coach / Consultant</option><option>E-commerce</option><option>Legal / Finance</option><option>Other</option></select></div>
+          <div class="fg"><label>Monthly leads</label><select><option value="">Select range</option><option>1&ndash;50 per month</option><option>50&ndash;200 per month</option><option>200&ndash;500 per month</option><option>500+ per month</option></select></div>
+          <div class="fg"><label>Current response process</label><textarea placeholder="We currently respond manually to WhatsApp and Instagram DMs..."></textarea></div>
+          <button class="bsend" onclick="doSend(this)">Activate system <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="fbr"><svg width="22" height="22" viewBox="0 0 34 34" fill="none" opacity=".3"><polygon points="17,2 30,9.5 30,24.5 17,32 4,24.5 4,9.5" fill="none" stroke="white" stroke-width="1.2"/><polygon points="17,9 24,23 10,23" fill="white" opacity=".9"/><polygon points="17,32 24,23 10,23" fill="white" opacity=".32"/></svg><span class="fn">NEXORA SYSTEMS</span></div>
+  <div class="fln"><a href="#system">System</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div>
+  <p>&#169; 2025 Nexora Systems &middot; nexorasystems.lat &middot; Costa Rica</p>
+</footer>
+<div id="chat-widget">
+  <div class="chat-panel" id="chat-panel">
+    <div class="chat-panel-head"><div class="chat-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg></div><div><div class="chat-name">Nexora AI</div><div class="chat-status2">&#9679; Online &mdash; replies instantly</div></div></div>
+    <div class="chat-messages" id="chat-messages"><div class="cmsg bot">Want to see how Nexora can automate your lead response?</div></div>
+    <div class="chat-options" id="chat-options">
+      <button class="chat-opt" onclick="chatReply('yes')">Yes, show me how it works</button>
+      <button class="chat-opt" onclick="chatReply('demo')">I want to book a demo</button>
+      <button class="chat-opt" onclick="chatReply('more')">Tell me more first</button>
+    </div>
+  </div>
+  <div class="chat-bubble" onclick="toggleChat()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+</div>
+<script>
+const C=document.getElementById('cur'),R=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.transform=`translate(${mx-3.5}px,${my-3.5}px)`;});
+(function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;R.style.transform=`translate(${rx-17}px,${ry-17}px)`;requestAnimationFrame(t);})();
+document.addEventListener('mouseover',e=>{const el=e.target.closest('a,button,.step-card,.tc,.metric-card,.pc,.ba-card,.cch,.chat-bubble,.chat-opt,.bplan,.bsend,.btn-primary,.btn-ghost,.lbtn,.ncta,.nlogo');document.body.classList.toggle('hov',!!el);});
+document.addEventListener('mouseout',e=>{if(!e.relatedTarget||!e.relatedTarget.closest('a,button,.step-card,.tc,.metric-card,.pc,.ba-card'))document.body.classList.remove('hov');});
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>44),{passive:true});
+const sids=['home','problem','system','process','results','technology','pricing','cta','contact'];
+const nas=document.querySelectorAll('.nlinks a:not(.ncta)');
+window.addEventListener('scroll',()=>{let cur='home';sids.forEach(id=>{const s=document.getElementById(id);if(s&&scrollY>=s.offsetTop-130)cur=id;});nas.forEach(a=>{a.style.color=a.getAttribute('href')=='#'+cur?'var(--white)':'';});},{passive:true});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.06});
+document.querySelectorAll('.r').forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll('#home .r').forEach(el=>el.classList.add('in')),60);
+const cv=document.getElementById('canvas'),cx=cv.getContext('2d');
+let W,H,ns=[];
+function rsz(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+rsz();window.addEventListener('resize',rsz,{passive:true});
+for(let i=0;i<75;i++)ns.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.2+.4});
+(function draw(){cx.clearRect(0,0,W,H);ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;});ns.forEach((a,i)=>{ns.slice(i+1).forEach(b=>{const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<125){cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.strokeStyle=`rgba(14,165,233,${.08*(1-d/125)})`;cx.lineWidth=.5;cx.stroke();}});cx.beginPath();cx.arc(a.x,a.y,a.r,0,Math.PI*2);cx.fillStyle='rgba(14,165,233,.18)';cx.fill();});requestAnimationFrame(draw);})();
+const hp=document.getElementById('hparts');
+if(hp){for(let i=0;i<18;i++){const p=document.createElement('div');p.className='hp';p.style.cssText=`left:${Math.random()*100}%;bottom:${Math.random()*25}%;--d:${7+Math.random()*9}s;--dl:${Math.random()*9}s;--dx:${(Math.random()-.5)*70}px;`;hp.appendChild(p);}}
+let lang='en';
+function doSend(btn){btn.innerHTML=lang==='es'?'Sistema activado &#10003;':'System initialized &#10003;';btn.style.background='#059669';btn.disabled=true;}
+let chatOpen=false;
+function toggleChat(){chatOpen=!chatOpen;document.getElementById('chat-panel').classList.toggle('open',chatOpen);}
+const chatFlows={yes:{msg:'The Nexora System captures every lead from Instagram, WhatsApp, and your website, replies in under 60 seconds with AI, and automatically books calls into your calendar. Want to see it live?',opts:[{t:'Book a Demo',a:'book'},{t:'How much does it cost?',a:'price'}]},demo:{msg:'Great choice. Our demo takes less than 15 minutes and shows you exactly how the system works for your specific business.',opts:[{t:'Schedule now',a:'book'},{t:'What type of business do you have?',a:'qualify'}]},more:{msg:'Nexora installs an AI system into your business that responds to every lead instantly. No manual replies. No missed leads. What type of business do you run?',opts:[{t:'Clinic / Health',a:'qualify'},{t:'Real Estate',a:'qualify'},{t:'E-commerce',a:'qualify'},{t:'Other',a:'qualify'}]},price:{msg:'Pricing depends on your volume and channels. All systems are a one-time setup with no monthly fees. The best way to get your exact investment is a quick demo.',opts:[{t:'Book a Demo',a:'book'}]},qualify:{msg:'Based on what you shared, Nexora can significantly increase your lead conversion rate. Would you like to see a quick demo?',opts:[{t:'Yes, schedule a demo',a:'book'},{t:'Not right now',a:'later'}]},book:{msg:'Your demo is being scheduled. Click below to pick a time that works for you.',opts:[{t:'Open Calendly',a:'calendly'}]},later:{msg:'No problem. When you are ready, we are here. Feel free to reach us at hello@nexorasystems.lat',opts:[{t:'Got it, thanks',a:'close'}]},calendly:{msg:'',opts:[]},close:{msg:'',opts:[]}};
+function chatReply(action){if(action==='calendly'){window.open('http://calendly.com/nexorasystems','_blank');return;}if(action==='close'){toggleChat();return;}const flow=chatFlows[action];if(!flow)return;const msgs=document.getElementById('chat-messages');const opts=document.getElementById('chat-options');const m=document.createElement('div');m.className='cmsg bot';m.innerHTML=flow.msg;msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight;opts.innerHTML='';flow.opts.forEach(o=>{const b=document.createElement('button');b.className='chat-opt';b.textContent=o.t;b.onclick=()=>chatReply(o.a);opts.appendChild(b);});}
+const T={en:{'badge':'AI-Powered Lead Conversion System','h1-1':'The AI system that runs','h1-2':'your business automatically.','h1-3':'Every lead. Every time.','hsub':'Capture every lead. Respond instantly. Convert more clients without manual work.','hpromise':'Respond to every lead instantly and convert more clients automatically.','btn-start':'Book a Demo','btn-how':'See How It Works','btn-micro':'Takes less than 2 minutes to schedule','sl-1':'Response time','sl-2':'More booked calls','sl-3':'Always running','sl-4':'Manual replies','urgency':'We are currently onboarding a limited number of clients this month. Spots are limited.','btn-send':'Activate system','fc':'© 2025 Nexora Systems · nexorasystems.lat · Costa Rica'},es:{'badge':'Sistema de IA para conversión de leads','h1-1':'El sistema de IA que maneja','h1-2':'tu negocio automáticamente.','h1-3':'Cada lead. Todo el tiempo.','hsub':'Captura cada lead. Responde al instante. Convierte más clientes sin trabajo manual.','hpromise':'Responde a cada lead al instante y convierte más clientes automáticamente.','btn-start':'Agendar Demo','btn-how':'Ver cómo funciona','btn-micro':'Toma menos de 2 minutos agendar','sl-1':'Tiempo de respuesta','sl-2':'Más llamadas','sl-3':'Siempre activo','sl-4':'Respuestas manuales','urgency':'Actualmente estamos incorporando un número limitado de clientes este mes. Los cupos son limitados.','btn-send':'Activar sistema','fc':'© 2025 Nexora Systems · nexorasystems.lat · Costa Rica'}};
+function setLang(l){lang=l;const t=T[l];document.documentElement.lang=l;document.title=l==='es'?'Nexora — El sistema de IA que maneja tu negocio':'Nexora — The AI System That Runs Your Business Automatically';document.querySelectorAll('.lbtn').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));const nls=document.querySelectorAll('.nlinks a:not(.ncta)');const nk=l==='es'?['Sistema','Proceso','Resultados','Tecnología','Precios','Contacto']:['System','Process','Results','Technology','Pricing','Contact'];nls.forEach((a,i)=>{if(nk[i])a.textContent=nk[i];});const cta=document.querySelector('.ncta');if(cta)cta.textContent=l==='es'?'Agendar Demo':'Book a Demo';const bdg=document.querySelector('.hbadge');if(bdg)bdg.innerHTML='<div class="bdot"></div>'+t['badge'];const ls=document.querySelectorAll('.htitle span');if(ls[0])ls[0].textContent=t['h1-1'];if(ls[1])ls[1].textContent=t['h1-2'];if(ls[2])ls[2].textContent=t['h1-3'];const hs=document.querySelector('.hsub');if(hs)hs.textContent=t['hsub'];const hp2=document.querySelector('.hpromise');if(hp2)hp2.textContent=t['hpromise'];const bp=document.querySelector('.btn-primary');if(bp)bp.innerHTML=t['btn-start']+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';const bg=document.querySelector('.btn-ghost');if(bg)bg.textContent=t['btn-how'];const bm=document.querySelector('.btn-micro');if(bm)bm.textContent=t['btn-micro'];const sls=document.querySelectorAll('.sl');['sl-1','sl-2','sl-3','sl-4'].forEach((k,i)=>{if(sls[i])sls[i].textContent=t[k];});const urg=document.querySelector('.urgency-text');if(urg)urg.textContent=t['urgency'];const ctah=document.querySelector('.cta-title');if(ctah)ctah.innerHTML=l==='es'?'Tu equipo de IA<br>está <em>listo.</em>':'Your AI team<br>is <em>ready.</em>';const bsn=document.querySelector('.bsend');if(bsn&&!bsn.disabled)bsn.textContent=t['btn-send'];const fcp=document.querySelector('footer > p');if(fcp)fcp.textContent=t['fc'];const fln=document.querySelectorAll('.fln a');const flk=l==='es'?['Sistema','Proceso','Precios','Contacto']:['System','Process','Pricing','Contact'];fln.forEach((a,i)=>{if(flk[i])a.textContent=flk[i];});}
+</script>
+</body>
+</html>
