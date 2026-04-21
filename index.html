@@ -11,7 +11,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--black:#03030a;--white:#f0f0f8;--blue:#38bdf8;--blue-mid:#0ea5e9;--glow-sm:0 0 28px rgba(56,189,248,.28);--glow-md:0 0 56px rgba(56,189,248,.32),0 0 112px rgba(56,189,248,.1);--gray-950:#07070f;--gray-900:#0d0d16;--gray-800:#13131f;--gray-700:#1a1a28;--gray-600:#242436;--gray-400:#48486a;--gray-300:#68688c;--gray-200:#9292b4;--border:rgba(255,255,255,.055);--border-b:rgba(56,189,248,.18);--border-bh:rgba(56,189,248,.42);--r-sm:6px;--r-md:10px;--r-lg:14px;}
+:root{
+  --black:#03030a;--white:#f0f0f8;
+  --blue:#38bdf8;--blue-mid:#0ea5e9;
+  --glow-sm:0 0 28px rgba(56,189,248,.28);
+  --glow-md:0 0 56px rgba(56,189,248,.32),0 0 112px rgba(56,189,248,.1);
+  --gray-950:#07070f;--gray-900:#0d0d16;--gray-800:#13131f;
+  --gray-700:#1a1a28;--gray-600:#242436;--gray-400:#48486a;
+  --gray-300:#68688c;--gray-200:#9292b4;
+  --border:rgba(255,255,255,.055);
+  --border-b:rgba(56,189,248,.18);--border-bh:rgba(56,189,248,.42);
+  --r-sm:6px;--r-md:10px;--r-lg:14px;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;scroll-padding-top:80px;}
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;cursor:none;animation:pagein .6s ease both;}
@@ -24,6 +35,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 body.hov #cur{width:13px;height:13px;background:#fff;box-shadow:var(--glow-md);}
 body.hov #ring{width:52px;height:52px;border-color:rgba(56,189,248,.55);}
 #canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .45s cubic-bezier(.4,0,.2,1);}
 nav.scrolled{padding:13px 60px;background:rgba(3,3,10,.92);backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid var(--border);box-shadow:0 4px 32px rgba(0,0,0,.5);}
 .nlogo{display:flex;align-items:center;gap:13px;text-decoration:none;}
@@ -59,6 +71,7 @@ section{position:relative;z-index:1;}
 .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--gray-200);padding:16px 32px;border-radius:3px;border:1px solid var(--border);font-family:'Syne',sans-serif;font-weight:600;font-size:12px;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;transition:all .28s;}
 .btn-ghost:hover{border-color:var(--border-b);color:var(--white);background:rgba(56,189,248,.04);}
 .btn-micro{font-size:12px;color:var(--gray-400);margin-top:14px;display:block;letter-spacing:.04em;}
+/* HERO */
 #home{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 60px 100px;overflow:hidden;}
 #home::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(14,165,233,.1) 0%,transparent 65%);pointer-events:none;z-index:0;animation:hglow 7s ease-in-out infinite alternate;}
 @keyframes hglow{from{opacity:.6;transform:translateX(-50%) scale(1);}to{opacity:1;transform:translateX(-50%) scale(1.1);}}
@@ -86,6 +99,7 @@ section{position:relative;z-index:1;}
 .sn{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--white);line-height:1;display:block;}
 .sn em{color:var(--blue);font-style:normal;}
 .sl{font-size:10px;color:var(--gray-400);letter-spacing:.13em;text-transform:uppercase;margin-top:5px;display:block;}
+/* MARQUEE */
 .mq{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;position:relative;z-index:1;background:var(--gray-950);}
 .mq::before,.mq::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none;}
 .mq::before{left:0;background:linear-gradient(90deg,var(--gray-950),transparent);}
@@ -94,6 +108,7 @@ section{position:relative;z-index:1;}
 .mi{display:flex;align-items:center;gap:11px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-400);white-space:nowrap;}
 .mi::before{content:'';width:3px;height:3px;background:var(--blue);border-radius:50%;opacity:.55;}
 @keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* PROBLEM */
 .prob-title{font-size:clamp(36px,4.5vw,62px);font-weight:800;letter-spacing:-.025em;margin-bottom:20px;}
 .prob-text{font-size:18px;color:var(--gray-300);font-weight:300;line-height:1.85;max-width:600px;margin:0 auto 64px;}
 .before-after{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:var(--r-md);overflow:hidden;max-width:700px;margin:0 auto;}
@@ -108,6 +123,7 @@ section{position:relative;z-index:1;}
 .ba-card.before .ba-dot{background:var(--gray-600);}
 .ba-card.after .ba-dot{background:var(--blue);box-shadow:0 0 8px rgba(56,189,248,.5);}
 .ba-card.after .ba-item{color:var(--white);}
+/* SYSTEM */
 .sys-visual{background:var(--gray-900);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;max-width:860px;margin:0 auto;}
 .sys-topbar{background:var(--gray-950);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:8px;}
 .dot{width:10px;height:10px;border-radius:50%;}
@@ -125,6 +141,7 @@ section{position:relative;z-index:1;}
 .chat-status{display:flex;align-items:center;gap:8px;padding:14px 28px;border-top:1px solid var(--border);background:rgba(56,189,248,.03);}
 .status-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 1.5s infinite;}
 .status-text{font-size:12px;color:var(--blue);letter-spacing:.06em;}
+/* PROCESS */
 .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;margin-top:64px;}
 .step-card{background:var(--gray-950);padding:36px 28px;position:relative;overflow:hidden;transition:background .35s;}
 .step-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);transform:scaleX(0);transition:transform .5s;}
@@ -135,6 +152,29 @@ section{position:relative;z-index:1;}
 .step-card:hover .step-icon{box-shadow:0 0 14px rgba(56,189,248,.22);}
 .step-card h3{font-size:17px;font-weight:700;margin-bottom:10px;}
 .step-card p{font-size:13px;color:var(--gray-300);line-height:1.78;}
+/* TESTIMONIALS */
+#testimonials{padding:140px 60px;overflow:hidden;background:var(--gray-950);}
+#testimonials .wrap-c{padding:0;}
+.test-cols{display:flex;justify-content:center;gap:20px;margin-top:72px;height:700px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent,black 12%,black 88%,transparent);mask-image:linear-gradient(to bottom,transparent,black 12%,black 88%,transparent);}
+.test-col{display:flex;flex-direction:column;gap:18px;flex-shrink:0;width:290px;}
+.test-col-inner{display:flex;flex-direction:column;gap:18px;}
+.test-col:nth-child(1) .test-col-inner{animation:tscroll 20s linear infinite;}
+.test-col:nth-child(2) .test-col-inner{animation:tscroll 26s linear infinite;}
+.test-col:nth-child(3) .test-col-inner{animation:tscroll 17s linear infinite;}
+@keyframes tscroll{0%{transform:translateY(0);}100%{transform:translateY(-50%);}}
+.test-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;flex-shrink:0;transition:border-color .3s,background .3s,transform .3s;}
+.test-card:hover{border-color:var(--border-b);background:rgba(56,189,248,.03);transform:translateY(-3px);}
+.test-stars{display:flex;gap:3px;margin-bottom:14px;}
+.test-stars span{color:#f59e0b;font-size:13px;letter-spacing:1px;}
+.test-text{font-size:14px;color:var(--gray-300);line-height:1.78;margin-bottom:20px;font-style:italic;}
+.test-author{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--border);}
+.test-avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--border-b);flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,.4);}
+.test-name{font-size:13px;font-weight:700;color:var(--white);letter-spacing:-.01em;}
+.test-role{font-size:11px;color:var(--gray-400);margin-top:2px;}
+@media(max-width:860px){.test-col:nth-child(3){display:none;}}
+@media(max-width:580px){.test-col:nth-child(2){display:none;}.test-cols{justify-content:center;}.test-col{width:calc(100vw - 48px);}}
+@media(prefers-reduced-motion:reduce){.test-col-inner{animation:none;}}
+/* RESULTS */
 .metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px;}
 .metric-card{background:var(--gray-900);border:1px solid var(--border);border-radius:var(--r-md);padding:40px 32px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s;}
 .metric-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top,rgba(56,189,248,.05) 0%,transparent 70%);opacity:0;transition:opacity .35s;}
@@ -143,6 +183,7 @@ section{position:relative;z-index:1;}
 .metric-num{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:var(--blue);line-height:1;display:block;margin-bottom:10px;}
 .metric-label{font-size:15px;font-weight:600;margin-bottom:8px;}
 .metric-sub{font-size:13px;color:var(--gray-300);}
+/* TECHNOLOGY */
 .tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;}
 .tc{background:var(--gray-950);padding:38px 30px;position:relative;overflow:hidden;transition:background .38s;}
 .tcg{position:absolute;top:-60px;left:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(56,189,248,.07) 0%,transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none;}
@@ -155,6 +196,7 @@ section{position:relative;z-index:1;}
 .tc:hover .tic{box-shadow:0 0 14px rgba(56,189,248,.22);}
 .tc h3{font-size:16px;font-weight:700;margin-bottom:8px;}
 .tc p{font-size:13px;color:var(--gray-300);line-height:1.8;}
+/* PRICING */
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;margin-top:64px;}
 .pc{background:var(--gray-800);border:1px solid var(--border);border-radius:var(--r-md);padding:36px;position:relative;transition:transform .3s;}
 .pc:hover{transform:translateY(-5px);}
@@ -179,9 +221,23 @@ section{position:relative;z-index:1;}
 .urgency-bar{background:rgba(56,189,248,.06);border:1px solid var(--border-b);border-radius:8px;padding:18px 28px;display:flex;align-items:center;gap:14px;max-width:620px;margin:40px auto 0;}
 .urgency-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;flex-shrink:0;animation:pulse 1.5s infinite;}
 .urgency-text{font-size:13px;color:var(--gray-200);}
+/* CTA */
 .cta-title{font-size:clamp(36px,5vw,68px);font-weight:800;letter-spacing:-.03em;margin-bottom:20px;line-height:1.05;}
 .cta-title em{color:var(--blue);font-style:normal;}
 .cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(14,165,233,.08) 0%,transparent 70%);pointer-events:none;}
+/* FAQ — FIX: same style as all other section titles */
+.faq-section{background:var(--gray-950);}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:64px;text-align:left;}
+@media(max-width:700px){.faq-grid{grid-template-columns:1fr;}}
+.faq-item{background:var(--gray-800);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;cursor:pointer;transition:border-color .3s;}
+.faq-item:hover{border-color:var(--border-b);}
+.faq-item.open{border-color:var(--border-bh);}
+.faq-q{padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:14px;font-weight:600;font-family:'Syne',sans-serif;color:var(--white);line-height:1.4;}
+.faq-icon{width:18px;height:18px;flex-shrink:0;color:var(--blue);transition:transform .3s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{display:none;padding:0 26px 22px;font-size:13.5px;color:var(--gray-300);line-height:1.78;}
+.faq-item.open .faq-a{display:block;}
+/* CONTACT */
 .cgrid{display:grid;grid-template-columns:1fr 1.2fr;gap:76px;align-items:start;}
 .cch{display:flex;gap:15px;align-items:center;padding:18px;border:1px solid var(--border);border-radius:8px;margin-bottom:12px;transition:border-color .28s,background .28s,transform .28s;text-decoration:none;position:relative;overflow:hidden;}
 .cch::after{content:'\2197';position:absolute;right:18px;top:50%;transform:translateY(-50%) translateX(8px);opacity:0;color:var(--blue);font-size:15px;transition:opacity .22s,transform .22s;}
@@ -190,7 +246,7 @@ section{position:relative;z-index:1;}
 .ci{width:40px;height:40px;background:rgba(56,189,248,.055);border:1px solid var(--border-b);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0;}
 .cl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:2px;}
 .cv{font-size:14px;color:var(--white);font-weight:500;}
-.cform{display:flex;flex-direction:column;gap:13px;}
+.cform{display:flex;flex-direction:column;gap:13px;position:relative;}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
 .fg{display:flex;flex-direction:column;gap:6px;}
 .fg label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);}
@@ -202,6 +258,12 @@ section{position:relative;z-index:1;}
 .bsend::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);transform:translateX(-100%);transition:transform .52s;}
 .bsend:hover::before{transform:translateX(100%);}
 .bsend:hover{box-shadow:var(--glow-md);transform:translateY(-2px);}
+.bsend:disabled{opacity:.5;cursor:not-allowed;}
+/* SECURITY helpers */
+.hp-trap{position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;}
+.rl-warn{display:none;padding:10px 14px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:6px;font-size:13px;color:#ef4444;}
+.rl-warn.show{display:block;}
+/* FOOTER */
 footer{background:var(--gray-950);border-top:1px solid var(--border);padding:38px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
 .fbr{display:flex;align-items:center;gap:11px;}
 .fn{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:.16em;opacity:.3;}
@@ -209,6 +271,7 @@ footer{background:var(--gray-950);border-top:1px solid var(--border);padding:38p
 .fln a{font-size:10px;color:var(--gray-400);text-decoration:none;letter-spacing:.09em;transition:color .2s;}
 .fln a:hover{color:var(--blue);}
 footer p{font-size:11px;color:var(--gray-400);}
+/* CHAT */
 #chat-widget{position:fixed;bottom:28px;right:28px;z-index:800;}
 .chat-bubble{width:54px;height:54px;background:var(--blue-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;box-shadow:var(--glow-md);transition:transform .28s;animation:chatpulse 3s ease-in-out infinite;}
 @keyframes chatpulse{0%,100%{box-shadow:var(--glow-sm);}50%{box-shadow:var(--glow-md);}}
@@ -226,6 +289,7 @@ footer p{font-size:11px;color:var(--gray-400);}
 .chat-options{padding:12px 16px;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border);}
 .chat-opt{background:transparent;border:1px solid var(--border-b);color:var(--blue);padding:9px 14px;border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;cursor:none;transition:all .22s;text-align:left;}
 .chat-opt:hover{background:rgba(56,189,248,.08);border-color:var(--blue);}
+/* FLOATING PARTICLES */
 .hp{position:absolute;width:2px;height:2px;background:var(--blue);border-radius:50%;opacity:0;pointer-events:none;animation:fup var(--d,8s) ease-in var(--dl,0s) infinite;}
 @keyframes fup{0%{transform:translateY(60px) translateX(0);opacity:0;}10%{opacity:.5;}90%{opacity:.12;}100%{transform:translateY(-120px) translateX(var(--dx,20px));opacity:0;}}
 a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px;}
@@ -236,10 +300,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 @media(max-width:960px){
   nav{padding:15px 22px;}nav.scrolled{padding:11px 22px;}.nlinks{display:none;}
   .wrap,.wrap-c{padding:80px 22px;}#home{padding:110px 22px 56px;}
-  .tech-grid,.steps-grid,.pgrid,.cgrid,.metrics-grid,.before-after{grid-template-columns:1fr;}
+  .tech-grid,.steps-grid,.pgrid,.cgrid,.metrics-grid,.before-after,.faq-grid{grid-template-columns:1fr;}
   .frow{grid-template-columns:1fr;}footer{padding:22px;flex-direction:column;align-items:flex-start;}
   .hstats{flex-direction:column;max-width:280px;}.si{border-right:none;border-bottom:1px solid var(--border);}
   .si:last-child{border-bottom:none;}.chat-panel{width:calc(100vw - 48px);right:-4px;}
+  #testimonials{padding:80px 22px;}
 }
 </style>
 </head>
@@ -247,61 +312,90 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 <div id="cur"></div>
 <div id="ring"></div>
 <canvas id="canvas"></canvas>
+
+<!-- NAV -->
 <nav id="nav">
   <a href="#home" class="nlogo">
     <svg width="30" height="30" viewBox="0 0 34 34" fill="none"><polygon points="17,2 30,9.5 30,24.5 17,32 4,24.5 4,9.5" fill="none" stroke="rgba(255,255,255,.88)" stroke-width="1.2" stroke-linejoin="round"/><polygon points="17,9 24,23 10,23" fill="white" opacity=".9"/><polygon points="17,32 24,23 10,23" fill="white" opacity=".32"/><circle cx="17" cy="2" r="2" fill="white"/><circle cx="30" cy="9.5" r="1.4" fill="white" opacity=".7"/><circle cx="30" cy="24.5" r="1.4" fill="white" opacity=".7"/><circle cx="17" cy="32" r="1.4" fill="white" opacity=".7"/><circle cx="4" cy="24.5" r="1.4" fill="white" opacity=".7"/><circle cx="4" cy="9.5" r="1.4" fill="white" opacity=".7"/></svg>
-    <span>NEXORA</span>
+    <span id="logo-txt">NEXORA</span>
   </a>
   <ul class="nlinks">
-    <li><a href="#system">System</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#technology">Technology</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="http://calendly.com/nexorasystems" target="_blank" class="ncta">Book a Demo</a></li>
+    <li><a href="#system" id="nl-1">System</a></li>
+    <li><a href="#process" id="nl-2">Process</a></li>
+    <li><a href="#results" id="nl-3">Results</a></li>
+    <li><a href="#technology" id="nl-4">Technology</a></li>
+    <li><a href="#pricing" id="nl-5">Pricing</a></li>
+    <li><a href="#contact" id="nl-6">Contact</a></li>
+    <li><a href="http://calendly.com/nexorasystems" target="_blank" rel="noopener noreferrer" class="ncta" id="nav-cta">Book a Demo</a></li>
   </ul>
-  <div class="ltog"><button class="lbtn on" onclick="setLang('en')">EN</button><button class="lbtn" onclick="setLang('es')">ES</button></div>
+  <div class="ltog">
+    <button class="lbtn on" onclick="setLang('en')">EN</button>
+    <button class="lbtn" onclick="setLang('es')">ES</button>
+  </div>
 </nav>
+
+<!-- HERO -->
 <section id="home">
   <div id="hparts" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;"></div>
-  <div class="hbadge r"><div class="bdot"></div>AI-Powered Lead Conversion System</div>
-  <h1 class="htitle r d1"><span class="l1">The AI system that runs</span><span class="l2">your business automatically.</span><span class="l3">Every lead. Every time.</span></h1>
-  <p class="hsub r d2">Capture every lead. Respond instantly. Convert more clients without manual work.</p>
-  <p class="hpromise r d2">Respond to every lead instantly and convert more clients automatically.</p>
+  <div class="hbadge r"><div class="bdot"></div><span id="h-badge">AI-Powered Lead Conversion System</span></div>
+  <h1 class="htitle r d1">
+    <span class="l1" id="h-l1">The AI system that runs</span>
+    <span class="l2" id="h-l2">your business automatically.</span>
+    <span class="l3" id="h-l3">Every lead. Every time.</span>
+  </h1>
+  <p class="hsub r d2" id="h-sub">Capture every lead. Respond instantly. Convert more clients without manual work.</p>
+  <p class="hpromise r d2" id="h-promise">Respond to every lead instantly and convert more clients automatically.</p>
   <div class="hacts r d3">
     <div class="hacts-row">
-      <a href="http://calendly.com/nexorasystems" target="_blank" class="btn-primary">Book a Demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="#system" class="btn-ghost">See How It Works</a>
+      <a href="http://calendly.com/nexorasystems" target="_blank" rel="noopener noreferrer" class="btn-primary" id="h-cta">Book a Demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#system" class="btn-ghost" id="h-ghost">See How It Works</a>
     </div>
-    <span class="btn-micro">Takes less than 2 minutes to schedule</span>
+    <span class="btn-micro" id="h-micro">Takes less than 2 minutes to schedule</span>
   </div>
   <div class="hstats r d4">
-    <div class="si"><span class="sn">&lt;<em>60s</em></span><span class="sl">Response time</span></div>
-    <div class="si"><span class="sn">2<em>&times;</em></span><span class="sl"><span data-i18n="m2-h">More booked calls</span></span></div>
-    <div class="si"><span class="sn">24<em>/7</em></span><span class="sl">Always running</span></div>
-    <div class="si"><span class="sn">0</span><span class="sl">Manual replies</span></div>
+    <div class="si"><span class="sn">&lt;<em>60s</em></span><span class="sl" id="sl-1">Response time</span></div>
+    <div class="si"><span class="sn">2<em>&times;</em></span><span class="sl" id="sl-2">More booked calls</span></div>
+    <div class="si"><span class="sn">24<em>/7</em></span><span class="sl" id="sl-3">Always running</span></div>
+    <div class="si"><span class="sn">0</span><span class="sl" id="sl-4">Manual replies</span></div>
   </div>
 </section>
-<div class="mq"><div class="mtrack"><span class="mi">Nexora LeadFlow System</span><span class="mi">AI Response Engine</span><span class="mi">Lead Qualification</span><span class="mi"><span data-i18n="step4-h">Automatic Booking</span></span><span class="mi">WhatsApp Automation</span><span class="mi">Instagram Capture</span><span class="mi">CRM Intelligence</span><span class="mi">Nexora Growth Engine</span><span class="mi">Data Pipeline</span><span class="mi">Conversion Architecture</span><span class="mi">24/7 Lead Capture</span><span class="mi"><span data-i18n="step3-h">Smart Qualification</span></span><span class="mi">Nexora LeadFlow System</span><span class="mi">AI Response Engine</span><span class="mi">Lead Qualification</span><span class="mi">Automatic Booking</span><span class="mi">WhatsApp Automation</span><span class="mi">Instagram Capture</span><span class="mi">CRM Intelligence</span><span class="mi">Nexora Growth Engine</span><span class="mi">Data Pipeline</span><span class="mi">Conversion Architecture</span><span class="mi">24/7 Lead Capture</span><span class="mi">Smart Qualification</span></div></div>
+
+<!-- MARQUEE -->
+<div class="mq"><div class="mtrack"><span class="mi">Nexora LeadFlow System</span><span class="mi">AI Response Engine</span><span class="mi">Lead Qualification</span><span class="mi">Automatic Booking</span><span class="mi">WhatsApp Automation</span><span class="mi">Instagram Capture</span><span class="mi">CRM Intelligence</span><span class="mi">Nexora Growth Engine</span><span class="mi">Data Pipeline</span><span class="mi">Conversion Architecture</span><span class="mi">24/7 Lead Capture</span><span class="mi">Smart Qualification</span><span class="mi">Nexora LeadFlow System</span><span class="mi">AI Response Engine</span><span class="mi">Lead Qualification</span><span class="mi">Automatic Booking</span><span class="mi">WhatsApp Automation</span><span class="mi">Instagram Capture</span><span class="mi">CRM Intelligence</span><span class="mi">Nexora Growth Engine</span><span class="mi">Data Pipeline</span><span class="mi">Conversion Architecture</span><span class="mi">24/7 Lead Capture</span><span class="mi">Smart Qualification</span></div></div>
 <div class="gl"></div>
-<section id="problem" data-section="problem" style="background:var(--gray-950);">
+
+<!-- PROBLEM -->
+<section id="problem" style="background:var(--gray-950);">
   <div class="wrap-c">
-    <span class="ey r"><span data-i18n="ey-prob">The problem</span></span>
-    <h2 class="prob-title r d1"><span data-i18n="h-prob">Most businesses lose leads before they even reply</span></h2>
-    <p class="prob-text r d2"><span data-i18n="p-prob">Customers expect instant responses. Most businesses take hours. Every delay is lost revenue.</span></p>
+    <span class="ey r" id="ey-problem">The problem</span>
+    <h2 class="prob-title r d1" id="h-problem">Most businesses lose leads before they even reply</h2>
+    <p class="prob-text r d2" id="p-problem">Customers expect instant responses. Most businesses take hours. Every delay is lost revenue.</p>
     <div class="before-after r d3">
-      <div class="ba-card before"><span class="ba-label"><span data-i18n="ba-before">Before Nexora</span></span><div class="ba-item"><div class="ba-dot"></div><span data-i18n="ba-b1">Lead sends a DM on Instagram</span></div><div class="ba-item"><div class="ba-dot"></div><span data-i18n="ba-b2">Business replies 4 hours later</span></div><div class="ba-item"><div class="ba-dot"></div><span data-i18n="ba-b3">Lead already booked a competitor</span></div><div class="ba-item"><div class="ba-dot"></div><span data-i18n="ba-b4">Revenue lost. Forever.</span></div></div>
-      <div class="ba-card after"><span class="ba-label"><span data-i18n="ba-after">After Nexora</span></span><div class="ba-item"><div class="ba-dot"></div>Lead sends a DM on Instagram</div><div class="ba-item"><div class="ba-dot"></div><span data-i18n="ba-a2">AI replies in under 60 seconds</span></div><div class="ba-item"><div class="ba-dot"></div><span data-i18n="ba-a3">Lead is qualified automatically</span></div><div class="ba-item"><div class="ba-dot"></div><span data-i18n="ba-a4">Call booked. Client converted.</span></div></div>
+      <div class="ba-card before">
+        <span class="ba-label" id="ba-before-label">Before Nexora</span>
+        <div class="ba-item"><div class="ba-dot"></div><span id="ba-b1">Lead sends a DM on Instagram</span></div>
+        <div class="ba-item"><div class="ba-dot"></div><span id="ba-b2">Business replies 4 hours later</span></div>
+        <div class="ba-item"><div class="ba-dot"></div><span id="ba-b3">Lead already booked a competitor</span></div>
+        <div class="ba-item"><div class="ba-dot"></div><span id="ba-b4">Revenue lost. Forever.</span></div>
+      </div>
+      <div class="ba-card after">
+        <span class="ba-label" id="ba-after-label">After Nexora</span>
+        <div class="ba-item"><div class="ba-dot"></div><span id="ba-a1">Lead sends a DM on Instagram</span></div>
+        <div class="ba-item"><div class="ba-dot"></div><span id="ba-a2">AI replies in under 60 seconds</span></div>
+        <div class="ba-item"><div class="ba-dot"></div><span id="ba-a3">Lead is qualified automatically</span></div>
+        <div class="ba-item"><div class="ba-dot"></div><span id="ba-a4">Call booked. Client converted.</span></div>
+      </div>
     </div>
   </div>
 </section>
 <div class="gl"></div>
+
+<!-- SYSTEM -->
 <section id="system">
   <div class="wrap-c">
-    <span class="ey r"><span data-i18n="ey-sys">The solution</span></span>
-    <h2 class="r d1" style="font-size:clamp(36px,4.5vw,62px);font-weight:800;letter-spacing:-.025em;margin-bottom:20px;"><span data-i18n="h-sys">Meet the Nexora System</span></h2>
-    <p class="r d2" style="font-size:17px;color:var(--gray-300);font-weight:300;max-width:560px;margin:0 auto 64px;line-height:1.85;"><span data-i18n="p-sys">An AI-powered automation platform that captures, qualifies, and converts your leads automatically &mdash; while you focus on growing your business.</span></p>
+    <span class="ey r" id="ey-system">The solution</span>
+    <h2 class="r d1" id="h-system" style="font-size:clamp(36px,4.5vw,62px);font-weight:800;letter-spacing:-.025em;margin-bottom:20px;">Meet the Nexora System</h2>
+    <p class="r d2" id="p-system" style="font-size:17px;color:var(--gray-300);font-weight:300;max-width:560px;margin:0 auto 64px;line-height:1.85;">An AI-powered automation platform that captures, qualifies, and converts your leads automatically &mdash; while you focus on growing your business.</p>
     <div class="sys-visual r d3">
       <div class="sys-topbar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><span class="sys-label">Nexora LeadFlow System &mdash; Live</span></div>
       <div class="chat-window">
@@ -310,202 +404,546 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <div class="chat-msg lead"><span class="chat-tag">Lead</span>Yes please, that would be great!<span class="chat-time">2:49 PM</span></div>
         <div class="chat-msg ai"><span class="chat-tag">Nexora AI &mdash; Instant</span>Here is your booking link: calendly.com/nexorasystems &mdash; I have reserved a slot for you. See you soon!<span class="chat-time">Delivered &middot; Lead qualified &middot; Call booked</span></div>
       </div>
-      <div class="chat-status"><div class="status-dot"></div><span class="status-text"><span data-i18n="chat-status">Nexora System active &mdash; monitoring 4 channels &mdash; 0 leads missed today</span></span></div>
+      <div class="chat-status"><div class="status-dot"></div><span class="status-text" id="chat-st">Nexora System active &mdash; monitoring 4 channels &mdash; 0 leads missed today</span></div>
     </div>
   </div>
 </section>
 <div class="gl"></div>
+
+<!-- PROCESS -->
 <section id="process" style="background:var(--gray-950);">
   <div class="wrap-c">
-    <span class="ey r"><span data-i18n="ey-proc">How it works</span></span>
-    <h2 class="r d1" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;max-width:660px;margin-left:auto;margin-right:auto;"><span data-i18n="h-proc">Four steps. Fully automatic.</span></h2>
-    <p class="r d2" style="font-size:16px;color:var(--gray-300);max-width:480px;margin:0 auto;font-weight:300;line-height:1.88;"><span data-i18n="p-proc">From the first message to a booked call &mdash; the Nexora System handles everything.</span></p>
+    <span class="ey r" id="ey-process">How it works</span>
+    <h2 class="r d1" id="h-process" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;max-width:660px;margin-left:auto;margin-right:auto;">Four steps. Fully automatic.</h2>
+    <p class="r d2" id="p-process" style="font-size:16px;color:var(--gray-300);max-width:480px;margin:0 auto;font-weight:300;line-height:1.88;">From the first message to a booked call &mdash; the Nexora System handles everything.</p>
     <div class="steps-grid r d3">
-      <div class="step-card"><span class="step-num">STEP 01</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><h3><span data-i18n="step1-h">Lead Capture</span></h3><p><span data-i18n="step1-p">Captures inquiries from Instagram, WhatsApp, and your website automatically &mdash; 24 hours a day.</span></p></div>
-      <div class="step-card"><span class="step-num">STEP 02</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><h3><span data-i18n="step2-h">Instant Response</span></h3><p><span data-i18n="step2-p">Replies in seconds with human-like AI conversations, tailored to your business and tone.</span></p></div>
-      <div class="step-card"><span class="step-num">STEP 03</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3>Smart Qualification</h3><p><span data-i18n="step3-p">Identifies serious buyers automatically. Only high-intent leads move forward in your pipeline.</span></p></div>
-      <div class="step-card"><span class="step-num">STEP 04</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><h3>Automatic Booking</h3><p><span data-i18n="step4-p">Books calls directly into your calendar. No back-and-forth. No manual scheduling.</span></p></div>
+      <div class="step-card"><span class="step-num">STEP 01</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><h3 id="s1-h">Lead Capture</h3><p id="s1-p">Captures inquiries from Instagram, WhatsApp, and your website automatically &mdash; 24 hours a day.</p></div>
+      <div class="step-card"><span class="step-num">STEP 02</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><h3 id="s2-h">Instant Response</h3><p id="s2-p">Replies in seconds with human-like AI conversations, tailored to your business and tone.</p></div>
+      <div class="step-card"><span class="step-num">STEP 03</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3 id="s3-h">Smart Qualification</h3><p id="s3-p">Identifies serious buyers automatically. Only high-intent leads move forward in your pipeline.</p></div>
+      <div class="step-card"><span class="step-num">STEP 04</span><div class="step-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><h3 id="s4-h">Automatic Booking</h3><p id="s4-p">Books calls directly into your calendar. No back-and-forth. No manual scheduling.</p></div>
     </div>
   </div>
 </section>
 <div class="gl"></div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="wrap-c" style="padding-bottom:0;">
+    <span class="ey r" id="ey-test">Social proof</span>
+    <h2 class="r d1" id="h-test" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;">What our clients say</h2>
+    <p class="r d2" id="p-test" style="font-size:16px;color:var(--gray-300);max-width:500px;margin:0 auto;font-weight:300;line-height:1.85;">Real results from businesses that installed the Nexora System.</p>
+  </div>
+  <div class="test-cols r d3">
+    <!-- Col 1 — 20s -->
+    <div class="test-col"><div class="test-col-inner">
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"We went from responding 6 hours later to under a minute. Bookings doubled in the first month. Best investment we've made for our clinic."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=47" alt="Ana García" width="42" height="42" loading="lazy"><div><div class="test-name">Ana García</div><div class="test-role">Owner, Clínica Estética AGS</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"The system captured a lead at 2am on a Sunday and booked them before I woke up. That one sale paid for the entire setup."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=12" alt="Carlos Méndez" width="42" height="42" loading="lazy"><div><div class="test-name">Carlos Méndez</div><div class="test-role">Realtor, CR Properties</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"We lost 60% of Instagram leads because we couldn't reply fast enough. Now zero leads are lost and revenue is up 40%."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=56" alt="María Jiménez" width="42" height="42" loading="lazy"><div><div class="test-name">María Jiménez</div><div class="test-role">Director, Marketing Pro CR</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"We went from responding 6 hours later to under a minute. Bookings doubled in the first month. Best investment we've made for our clinic."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=47" alt="Ana García" width="42" height="42" loading="lazy"><div><div class="test-name">Ana García</div><div class="test-role">Owner, Clínica Estética AGS</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"The system captured a lead at 2am on a Sunday and booked them before I woke up. That one sale paid for the entire setup."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=12" alt="Carlos Méndez" width="42" height="42" loading="lazy"><div><div class="test-name">Carlos Méndez</div><div class="test-role">Realtor, CR Properties</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"We lost 60% of Instagram leads because we couldn't reply fast enough. Now zero leads are lost and revenue is up 40%."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=56" alt="María Jiménez" width="42" height="42" loading="lazy"><div><div class="test-name">María Jiménez</div><div class="test-role">Director, Marketing Pro CR</div></div></div></div>
+    </div></div>
+    <!-- Col 2 — 26s -->
+    <div class="test-col"><div class="test-col-inner">
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"Nexora handles all our WhatsApp leads automatically. The AI sounds so natural that clients don't even realize — they just show up to appointments."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=33" alt="Roberto Vargas" width="42" height="42" loading="lazy"><div><div class="test-name">Roberto Vargas</div><div class="test-role">CEO, DentalPlus CR</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"I was skeptical at first, but after 30 days I had 23 extra booked calls without lifting a finger. The ROI is unlike anything I've seen."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=25" alt="Sofía Brenes" width="42" height="42" loading="lazy"><div><div class="test-name">Sofía Brenes</div><div class="test-role">Coach, Transformación Digital</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"Setup done in under a week and immediately converting. The team is professional and results are measurable from day one. Highly recommend."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=52" alt="Luis Alvarado" width="42" height="42" loading="lazy"><div><div class="test-name">Luis Alvarado</div><div class="test-role">Owner, Restaurante Vista</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"Nexora handles all our WhatsApp leads automatically. The AI sounds so natural that clients don't even realize — they just show up to appointments."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=33" alt="Roberto Vargas" width="42" height="42" loading="lazy"><div><div class="test-name">Roberto Vargas</div><div class="test-role">CEO, DentalPlus CR</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"I was skeptical at first, but after 30 days I had 23 extra booked calls without lifting a finger. The ROI is unlike anything I've seen."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=25" alt="Sofía Brenes" width="42" height="42" loading="lazy"><div><div class="test-name">Sofía Brenes</div><div class="test-role">Coach, Transformación Digital</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"Setup done in under a week and immediately converting. The team is professional and results are measurable from day one. Highly recommend."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=52" alt="Luis Alvarado" width="42" height="42" loading="lazy"><div><div class="test-name">Luis Alvarado</div><div class="test-role">Owner, Restaurante Vista</div></div></div></div>
+    </div></div>
+    <!-- Col 3 — 17s -->
+    <div class="test-col"><div class="test-col-inner">
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"The CRM integration is seamless. Every conversation automatically logged, tagged, and synced. My team saved hours every single week."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=44" alt="Daniela Mora" width="42" height="42" loading="lazy"><div><div class="test-name">Daniela Mora</div><div class="test-role">Sales Manager, Grupo Inmobilia</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"My closing rate went from 20% to 45%. Nexora pre-qualifies every lead so I only talk to people who are ready to buy. It changed everything."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=38" alt="Patricia Salas" width="42" height="42" loading="lazy"><div><div class="test-name">Patricia Salas</div><div class="test-role">Attorney, Salas &amp; Asociados</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"Our e-commerce captures leads from 3 channels simultaneously, 24/7. Conversion rate up 65% in the first 30 days. Absolutely worth it."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=68" alt="Andrés Castro" width="42" height="42" loading="lazy"><div><div class="test-name">Andrés Castro</div><div class="test-role">Founder, TechShop CR</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"The CRM integration is seamless. Every conversation automatically logged, tagged, and synced. My team saved hours every single week."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=44" alt="Daniela Mora" width="42" height="42" loading="lazy"><div><div class="test-name">Daniela Mora</div><div class="test-role">Sales Manager, Grupo Inmobilia</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"My closing rate went from 20% to 45%. Nexora pre-qualifies every lead so I only talk to people who are ready to buy. It changed everything."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=38" alt="Patricia Salas" width="42" height="42" loading="lazy"><div><div class="test-name">Patricia Salas</div><div class="test-role">Attorney, Salas &amp; Asociados</div></div></div></div>
+      <div class="test-card"><div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="test-text">"Our e-commerce captures leads from 3 channels simultaneously, 24/7. Conversion rate up 65% in the first 30 days. Absolutely worth it."</p><div class="test-author"><img class="test-avatar" src="https://i.pravatar.cc/150?img=68" alt="Andrés Castro" width="42" height="42" loading="lazy"><div><div class="test-name">Andrés Castro</div><div class="test-role">Founder, TechShop CR</div></div></div></div>
+    </div></div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- RESULTS -->
 <section id="results">
   <div class="wrap-c">
-    <span class="ey r"><span data-i18n="ey-res">Real impact</span></span>
-    <h2 class="r d1" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;"><span data-i18n="h-res">Real business results</span></h2>
-    <p class="r d2" style="font-size:17px;color:var(--gray-300);font-weight:300;max-width:480px;margin:0 auto;line-height:1.85;"><span data-i18n="p-res">Businesses using the Nexora System see measurable results within the first 30 days.</span></p>
+    <span class="ey r" id="ey-results">Real impact</span>
+    <h2 class="r d1" id="h-results" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;">Real business results</h2>
+    <p class="r d2" id="p-results" style="font-size:17px;color:var(--gray-300);font-weight:300;max-width:480px;margin:0 auto;line-height:1.85;">Businesses using the Nexora System see measurable results within the first 30 days.</p>
     <div class="metrics-grid">
-      <div class="metric-card r d1"><span class="metric-num">&lt;60s</span><div class="metric-label"><span data-i18n="m1-h">Response to every lead</span></div><div class="metric-sub"><span data-i18n="m1-p">Before Nexora: 4+ hours on average. After: instant, every time.</span></div></div>
-      <div class="metric-card r d2"><span class="metric-num">2&times;</span><div class="metric-label">More booked calls</div><div class="metric-sub"><span data-i18n="m2-p">More leads qualified, more calls scheduled, more clients converted.</span></div></div>
-      <div class="metric-card r d3"><span class="metric-num">24/7</span><div class="metric-label"><span data-i18n="m3-h">Lead capture, always on</span></div><div class="metric-sub"><span data-i18n="m3-p">The system works while you sleep. No lead is ever missed again.</span></div></div>
+      <div class="metric-card r d1"><span class="metric-num">&lt;60s</span><div class="metric-label" id="m1-l">Response to every lead</div><div class="metric-sub" id="m1-s">Before Nexora: 4+ hours on average. After: instant, every time.</div></div>
+      <div class="metric-card r d2"><span class="metric-num">2&times;</span><div class="metric-label" id="m2-l">More booked calls</div><div class="metric-sub" id="m2-s">More leads qualified, more calls scheduled, more clients converted.</div></div>
+      <div class="metric-card r d3"><span class="metric-num">24/7</span><div class="metric-label" id="m3-l">Lead capture, always on</div><div class="metric-sub" id="m3-s">The system works while you sleep. No lead is ever missed again.</div></div>
     </div>
   </div>
 </section>
 <div class="gl"></div>
+
+<!-- TECHNOLOGY -->
 <section id="technology" style="background:var(--gray-950);">
   <div class="wrap">
-    <span class="ey r"><span data-i18n="ey-tech">The architecture</span></span>
-    <h2 class="r d1" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;max-width:660px;"><span data-i18n="h-tech">Enterprise-grade AI infrastructure</span></h2>
-    <p class="r d2" style="font-size:16px;color:var(--gray-300);max-width:500px;font-weight:300;line-height:1.88;margin-bottom:60px;"><span data-i18n="p-tech">The Nexora Platform is built on the same technology stack powering the world&rsquo;s fastest-growing companies.</span></p>
+    <span class="ey r" id="ey-tech">The architecture</span>
+    <h2 class="r d1" id="h-tech" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;max-width:660px;">Enterprise-grade AI infrastructure</h2>
+    <p class="r d2" id="p-tech" style="font-size:16px;color:var(--gray-300);max-width:500px;font-weight:300;line-height:1.88;margin-bottom:60px;">The Nexora Platform is built on the same technology stack powering the world&rsquo;s fastest-growing companies.</p>
     <div class="tech-grid">
-      <div class="tc r"><div class="tcg"></div><div class="tnum">01</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><h3><span data-i18n="t1-h">AI Conversation Engine</span></h3><p><span data-i18n="t1-p">GPT-4o powers every conversation &mdash; context-aware, multilingual, indistinguishable from a human agent.</span></p></div>
-      <div class="tc r d1"><div class="tcg"></div><div class="tnum">02</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3><span data-i18n="t2-h">Automation Architecture</span></h3><p><span data-i18n="t2-p">300+ integrations. Unlimited workflows. The entire lead pipeline runs without a single manual step.</span></p></div>
-      <div class="tc r d2"><div class="tcg"></div><div class="tnum">03</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3><span data-i18n="t3-h">Data Intelligence</span></h3><p><span data-i18n="t3-p">Every interaction synced in real-time to your CRM. Full pipeline visibility, zero manual data entry.</span></p></div>
-      <div class="tc r d1"><div class="tcg"></div><div class="tnum">04</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.08 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div><h3><span data-i18n="t4-h">Omnichannel Platform</span></h3><p><span data-i18n="t4-p">WhatsApp, Instagram, email &mdash; one unified system handles all channels simultaneously.</span></p></div>
-      <div class="tc r d2"><div class="tcg"></div><div class="tnum">05</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3><span data-i18n="t5-h">Lead Scoring Engine</span></h3><p><span data-i18n="t5-p">Every prospect analyzed and scored in real-time. Only high-intent leads enter your pipeline.</span></p></div>
-      <div class="tc r d3"><div class="tcg"></div><div class="tnum">06</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><h3><span data-i18n="t6-h">Booking Automation</span></h3><p><span data-i18n="t6-p">Calendar integration closes every cycle. When a lead is ready, the system books the call automatically.</span></p></div>
+      <div class="tc r"><div class="tcg"></div><div class="tnum">01</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><h3 id="t1-h">AI Conversation Engine</h3><p id="t1-p">GPT-4o powers every conversation &mdash; context-aware, multilingual, indistinguishable from a human agent.</p></div>
+      <div class="tc r d1"><div class="tcg"></div><div class="tnum">02</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3 id="t2-h">Automation Architecture</h3><p id="t2-p">300+ integrations. Unlimited workflows. The entire lead pipeline runs without a single manual step.</p></div>
+      <div class="tc r d2"><div class="tcg"></div><div class="tnum">03</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3 id="t3-h">Data Intelligence</h3><p id="t3-p">Every interaction synced in real-time to your CRM. Full pipeline visibility, zero manual data entry.</p></div>
+      <div class="tc r d1"><div class="tcg"></div><div class="tnum">04</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.08 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div><h3 id="t4-h">Omnichannel Platform</h3><p id="t4-p">WhatsApp, Instagram, email &mdash; one unified system handles all channels simultaneously.</p></div>
+      <div class="tc r d2"><div class="tcg"></div><div class="tnum">05</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3 id="t5-h">Lead Scoring Engine</h3><p id="t5-p">Every prospect analyzed and scored in real-time. Only high-intent leads enter your pipeline.</p></div>
+      <div class="tc r d3"><div class="tcg"></div><div class="tnum">06</div><div class="tic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><h3 id="t6-h">Booking Automation</h3><p id="t6-p">Calendar integration closes every cycle. When a lead is ready, the system books the call automatically.</p></div>
     </div>
   </div>
 </section>
 <div class="gl"></div>
+
+<!-- PRICING -->
 <section id="pricing">
   <div class="wrap-c">
-    <span class="ey r"><span data-i18n="ey-price">Choose your system</span></span>
-    <h2 class="r d1" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;"><span data-i18n="h-price">One investment. Permanent results.</span></h2>
-    <p class="r d2" style="font-size:16px;color:var(--gray-300);max-width:480px;margin:0 auto;font-weight:300;line-height:1.88;"><span data-i18n="p-price">One-time setup. No monthly fees. The system is yours completely.</span></p>
+    <span class="ey r" id="ey-pricing">Choose your system</span>
+    <h2 class="r d1" id="h-pricing" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;">One investment. Permanent results.</h2>
+    <p class="r d2" id="p-pricing" style="font-size:16px;color:var(--gray-300);max-width:480px;margin:0 auto;font-weight:300;line-height:1.88;">One-time setup. No monthly fees. The system is yours completely.</p>
     <div class="pgrid">
-      <div class="pc r"><span class="ptier">Basic</span><h3>Nexora Growth Engine</h3><p class="pc-desc"><span data-i18n="pd1">For businesses ready to stop losing leads to slow response times.</span></p><div class="pdiv"></div><ul class="pfl"><li><span data-i18n="pf1">Lead capture (1 channel)</span></li><li><span data-i18n="pf2">AI qualification system</span></li><li><span data-i18n="pf3">Automated response engine</span></li><li><span data-i18n="pf4">CRM intelligence setup</span></li><li><span data-i18n="pf5">30-day optimization</span></li><li class="off"><span data-i18n="pf6">Omnichannel platform</span></li><li class="off"><span data-i18n="pf7">Automatic booking system</span></li></ul><a href="http://calendly.com/nexorasystems" target="_blank" class="bplan">Book a Demo</a></div>
-      <div class="pc pop r d1"><span class="ptag"><span data-i18n="ptag">Most installed</span></span><span class="ptier">Professional</span><h3>Nexora LeadFlow System</h3><p class="pc-desc"><span data-i18n="pd2">For growing businesses scaling their lead conversion automatically.</span></p><div class="pdiv"></div><ul class="pfl"><li><span data-i18n="pf8">Lead capture (3 channels)</span></li><li><span data-i18n="pf9">AI qualification + scoring</span></li><li><span data-i18n="pf10">Omnichannel response platform</span></li><li><span data-i18n="pf11">Automatic booking engine</span></li><li><span data-i18n="pf12">Full CRM data intelligence</span></li><li><span data-i18n="pf13">60-day optimization</span></li><li><span data-i18n="pf14">Priority deployment</span></li></ul><a href="http://calendly.com/nexorasystems" target="_blank" class="bplan">Book a Demo</a></div>
-      <div class="pc r d2"><span class="ptier">Enterprise</span><h3>Nexora Growth Engine Pro</h3><p class="pc-desc"><span data-i18n="pd3">For high-volume operations that need a complete AI infrastructure.</span></p><div class="pdiv"></div><ul class="pfl"><li><span data-i18n="pf15">Everything in LeadFlow</span></li><li><span data-i18n="pf16">All channels (WA + IG + Email)</span></li><li><span data-i18n="pf17">Custom AI personality</span></li><li><span data-i18n="pf18">Client onboarding automation</span></li><li><span data-i18n="pf19">Payment integration</span></li><li><span data-i18n="pf20">Operations dashboard</span></li><li><span data-i18n="pf21">90-day optimization</span></li></ul><a href="http://calendly.com/nexorasystems" target="_blank" class="bplan">Book a Demo</a></div>
+      <div class="pc r"><span class="ptier" id="pt-1">Basic</span><h3 id="ph-1">Nexora Growth Engine</h3><p class="pc-desc" id="pd-1">For businesses ready to stop losing leads to slow response times.</p><div class="pdiv"></div><ul class="pfl"><li id="pf-1a">Lead capture (1 channel)</li><li id="pf-1b">AI qualification system</li><li id="pf-1c">Automated response engine</li><li id="pf-1d">CRM intelligence setup</li><li id="pf-1e">30-day optimization</li><li class="off" id="pf-1f">Omnichannel platform</li><li class="off" id="pf-1g">Automatic booking system</li></ul><a href="http://calendly.com/nexorasystems" target="_blank" rel="noopener noreferrer" class="bplan" id="bplan-1">Book a Demo</a></div>
+      <div class="pc pop r d1"><span class="ptag" id="ptag">Most installed</span><span class="ptier" id="pt-2">Professional</span><h3 id="ph-2">Nexora LeadFlow System</h3><p class="pc-desc" id="pd-2">For growing businesses scaling their lead conversion automatically.</p><div class="pdiv"></div><ul class="pfl"><li id="pf-2a">Lead capture (3 channels)</li><li id="pf-2b">AI qualification + scoring</li><li id="pf-2c">Omnichannel response platform</li><li id="pf-2d">Automatic booking engine</li><li id="pf-2e">Full CRM data intelligence</li><li id="pf-2f">60-day optimization</li><li id="pf-2g">Priority deployment</li></ul><a href="http://calendly.com/nexorasystems" target="_blank" rel="noopener noreferrer" class="bplan" id="bplan-2">Book a Demo</a></div>
+      <div class="pc r d2"><span class="ptier" id="pt-3">Enterprise</span><h3 id="ph-3">Nexora Growth Engine Pro</h3><p class="pc-desc" id="pd-3">For high-volume operations that need a complete AI infrastructure.</p><div class="pdiv"></div><ul class="pfl"><li id="pf-3a">Everything in LeadFlow</li><li id="pf-3b">All channels (WA + IG + Email)</li><li id="pf-3c">Custom AI personality</li><li id="pf-3d">Client onboarding automation</li><li id="pf-3e">Payment integration</li><li id="pf-3f">Operations dashboard</li><li id="pf-3g">90-day optimization</li></ul><a href="http://calendly.com/nexorasystems" target="_blank" rel="noopener noreferrer" class="bplan" id="bplan-3">Book a Demo</a></div>
     </div>
-    <div class="urgency-bar r d3"><div class="urgency-dot"></div><span class="urgency-text">We are currently onboarding a limited number of clients this month. Spots are limited.</span></div>
+    <div class="urgency-bar r d3"><div class="urgency-dot"></div><span class="urgency-text" id="urgency-txt">We are currently onboarding a limited number of clients this month. Spots are limited.</span></div>
   </div>
 </section>
 <div class="gl"></div>
+
+<!-- CTA -->
 <section id="cta" style="background:var(--gray-950);text-align:center;">
   <div class="wrap-c" style="position:relative;">
     <div class="cta-glow"></div>
     <div class="r" style="max-width:700px;margin:0 auto;">
-      <span class="ey" style="justify-content:center;"><span data-i18n="ey-cta">Ready to install</span></span>
-      <h2 class="cta-title">Your AI team<br>is <em>ready.</em></h2>
-      <p style="font-size:17px;color:var(--gray-300);font-weight:300;margin-bottom:48px;line-height:1.75;"><span data-i18n="p-cta">Start capturing and converting leads automatically today. See how Nexora works in a short demo.</span></p>
-      <a href="http://calendly.com/nexorasystems" target="_blank" class="btn-primary" style="font-size:14px;padding:18px 44px;">Book a Demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <span class="btn-micro" style="margin-top:16px;"><span data-i18n="cta-micro">Takes less than 2 minutes &middot; No commitment required</span></span>
+      <span class="ey" style="justify-content:center;" id="ey-cta">Ready to install</span>
+      <h2 class="cta-title" id="h-cta">Your AI team<br>is <em>ready.</em></h2>
+      <p id="p-cta" style="font-size:17px;color:var(--gray-300);font-weight:300;margin-bottom:48px;line-height:1.75;">Start capturing and converting leads automatically today. See how Nexora works in a short demo.</p>
+      <a href="http://calendly.com/nexorasystems" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:14px;padding:18px 44px;" id="cta-btn">Book a Demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <span class="btn-micro" style="margin-top:16px;" id="cta-micro">Takes less than 2 minutes &middot; No commitment required</span>
     </div>
   </div>
 </section>
 <div class="gl"></div>
+
+<!-- FAQ — FIXED: title now uses same style as all other sections -->
+<section id="faq" class="faq-section">
+  <div class="wrap-c">
+    <span class="ey r" id="ey-faq">FAQ</span>
+    <h2 class="r d1" id="h-faq" style="font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;">Frequently Asked <em style="color:var(--blue);font-style:normal;">Questions</em></h2>
+    <p class="r d2" id="p-faq" style="font-size:16px;color:var(--gray-300);max-width:500px;margin:0 auto;font-weight:300;line-height:1.85;">Everything you need to know about working with Nexora Systems.</p>
+    <div class="faq-grid r d3">
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-q"><span id="fq-1">How long does the setup take?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-a" id="fa-1">Most clients are fully set up and live within 5–7 business days. We handle the entire installation — you just provide access to your channels and we take it from there.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-q"><span id="fq-2">Do you offer ongoing support?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-a" id="fa-2">Yes. Every plan includes an optimization period (30, 60 or 90 days depending on your plan) where we monitor, adjust, and improve the system based on real results.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-q"><span id="fq-3">Which channels does Nexora connect to?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-a" id="fa-3">WhatsApp, Instagram DMs, Facebook Messenger, email, and your website contact forms. The Professional plan covers 3 channels and Enterprise covers all of them simultaneously.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-q"><span id="fq-4">Is the AI personalized to my business?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-a" id="fa-4">Yes. We train the AI on your specific services, pricing, tone of voice, and frequently asked questions. It responds exactly as your best sales person would — 24 hours a day.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-q"><span id="fq-5">Are there monthly fees after setup?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-a" id="fa-5">No. The Nexora System is a one-time investment. There are no recurring platform fees from us. You only pay for your own channel subscriptions if applicable.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-q"><span id="fq-6">What if I need changes after launch?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-a" id="fa-6">During your optimization period, any changes are included. After that, we offer affordable update packages. Most clients find the system works so well they rarely need modifications.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- CONTACT -->
 <section id="contact" style="border-top:1px solid var(--border);">
   <div class="wrap">
     <div class="cgrid">
       <div class="r">
-        <span class="ey"><span data-i18n="ey-con">Get in touch</span></span>
-        <h2 style="font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;font-family:'Syne',sans-serif;"><span data-i18n="h-con">Have questions?<br>We respond fast.</span></h2>
-        <p style="font-size:15px;color:var(--gray-300);line-height:1.88;margin-bottom:38px;"><span data-i18n="p-con">Tell us about your business. We will get back to you within a few hours.</span></p>
-        <a href="https://wa.me/50671103840" target="_blank" class="cch"><div class="ci"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><div><div class="cl"><span data-i18n="cl-wa">WhatsApp</span></div><div class="cv"><span data-i18n="cv-wa">+506 7110-3840</span></div></div></a>
-        <a href="/cdn-cgi/l/email-protection#b1d9d4dddddef1dfd4c9dec3d0c2c8c2c5d4dcc29fddd0c5" class="cch"><div class="ci"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="cl">Email</div><div class="cv"><span class="__cf_email__" data-cfemail="1179747d7d7e517f74697e637062686265747c623f7d7065">[email&#160;protected]</span></div></div></a>
-        <a href="http://calendly.com/nexorasystems" target="_blank" class="cch"><div class="ci"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><div class="cl"><span data-i18n="cl-bk">Book a demo</span></div><div class="cv"><span data-i18n="cv-bk">calendly.com/nexorasystems</span></div></div></a>
+        <span class="ey" id="ey-contact">Get in touch</span>
+        <h2 id="h-contact" style="font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.025em;margin-bottom:16px;font-family:'Syne',sans-serif;">Have questions?<br>We respond fast.</h2>
+        <p id="p-contact" style="font-size:15px;color:var(--gray-300);line-height:1.88;margin-bottom:38px;">Tell us about your business. We will get back to you within a few hours.</p>
+        <a href="https://wa.me/50671103840" target="_blank" rel="noopener noreferrer" class="cch"><div class="ci"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><div><div class="cl" id="cl-wa">WhatsApp</div><div class="cv">+506 7110-3840</div></div></a>
+        <a href="mailto:hello@nexorasystems.lat" class="cch"><div class="ci"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="cl" id="cl-em">Email</div><div class="cv">hello@nexorasystems.lat</div></div></a>
+        <a href="http://calendly.com/nexorasystems" target="_blank" rel="noopener noreferrer" class="cch"><div class="ci"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><div class="cl" id="cl-cal">Book a demo</div><div class="cv">calendly.com/nexorasystems</div></div></a>
       </div>
       <div class="r d1">
+        <!-- SECURITY: honeypot + timestamp -->
+        <div class="hp-trap" aria-hidden="true"><input type="text" name="website" id="nx-hp" tabindex="-1" autocomplete="off"></div>
+        <input type="hidden" id="nx-ts" value="">
         <div class="cform">
-          <div class="frow"><div class="fg"><label><span data-i18n="fl-fn">First name</span></label><input type="text" placeholder="Ana"></div><div class="fg"><label><span data-i18n="fl-ln">Last name</span></label><input type="text" placeholder="Garc&iacute;a"></div></div>
-          <div class="fg"><label><span data-i18n="fl-em">Business email</span></label><input type="email" placeholder="ana@tuempresa.com"></div>
-          <div class="fg"><label><span data-i18n="fl-bz">Business name</span></label><input type="text" placeholder="Cl&iacute;nica Est&eacute;tica XYZ"></div>
-          <div class="fg"><label><span data-i18n="fl-in">Industry</span></label><select><option value=""><span data-i18n="opt-ind">Select your industry</span></option><option><span data-i18n="opt-c1">Clinic / Health</span></option><option><span data-i18n="opt-c2">Real Estate</span></option><option><span data-i18n="opt-c3">Restaurant / Events</span></option><option><span data-i18n="opt-c4">Coach / Consultant</span></option><option><span data-i18n="opt-c5">E-commerce</span></option><option><span data-i18n="opt-c6">Legal / Finance</span></option><option><span data-i18n="opt-c7">Other</span></option></select></div>
-          <div class="fg"><label><span data-i18n="fl-vo">Monthly leads</span></label><select><option value=""><span data-i18n="opt-r0">Select range</span></option><option>1&ndash;50 per month</option><option>50&ndash;200 per month</option><option>200&ndash;500 per month</option><option>500+ per month</option></select></div>
-          <div class="fg"><label><span data-i18n="fl-ms">Current response process</span></label><textarea placeholder="We currently respond manually to WhatsApp and Instagram DMs..."></textarea></div>
-          <button class="bsend" onclick="doSend(this)">Activate system <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          <div class="frow">
+            <div class="fg"><label id="fl-fn">First name</label><input type="text" id="f-firstname" placeholder="Ana" maxlength="60" autocomplete="given-name"></div>
+            <div class="fg"><label id="fl-ln">Last name</label><input type="text" id="f-lastname" placeholder="García" maxlength="60" autocomplete="family-name"></div>
+          </div>
+          <div class="fg"><label id="fl-em">Business email</label><input type="email" id="f-email" placeholder="ana@tuempresa.com" maxlength="120" autocomplete="email"></div>
+          <div class="fg"><label id="fl-biz">Business name</label><input type="text" id="f-biz" placeholder="Clínica Estética XYZ" maxlength="120"></div>
+          <div class="fg"><label id="fl-ind">Industry</label>
+            <select id="f-industry">
+              <option value="" id="fo-ind">Select your industry</option>
+              <option value="clinic" id="fo-1">Clinic / Health</option>
+              <option value="realestate" id="fo-2">Real Estate</option>
+              <option value="restaurant" id="fo-3">Restaurant / Events</option>
+              <option value="coach" id="fo-4">Coach / Consultant</option>
+              <option value="ecommerce" id="fo-5">E-commerce</option>
+              <option value="legal" id="fo-6">Legal / Finance</option>
+              <option value="other" id="fo-7">Other</option>
+            </select>
+          </div>
+          <div class="fg"><label id="fl-leads">Monthly leads</label>
+            <select id="f-volume">
+              <option value="" id="fo-r0">Select range</option>
+              <option value="1-50">1–50 per month</option>
+              <option value="50-200">50–200 per month</option>
+              <option value="200-500">200–500 per month</option>
+              <option value="500+">500+ per month</option>
+            </select>
+          </div>
+          <div class="fg"><label id="fl-msg">Current response process</label><textarea id="f-message" placeholder="We currently respond manually to WhatsApp and Instagram DMs..." maxlength="1000"></textarea></div>
+          <div id="nx-warn" class="rl-warn"></div>
+          <button class="bsend" id="send-btn" onclick="doSend(this)"><span id="send-txt">Activate system</span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- FOOTER -->
 <footer>
   <div class="fbr"><svg width="22" height="22" viewBox="0 0 34 34" fill="none" opacity=".3"><polygon points="17,2 30,9.5 30,24.5 17,32 4,24.5 4,9.5" fill="none" stroke="white" stroke-width="1.2"/><polygon points="17,9 24,23 10,23" fill="white" opacity=".9"/><polygon points="17,32 24,23 10,23" fill="white" opacity=".32"/></svg><span class="fn">NEXORA SYSTEMS</span></div>
-  <div class="fln"><a href="#system">System</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div>
-  <p>&#169; 2025 Nexora Systems &middot; nexorasystems.lat &middot; Costa Rica</p>
+  <div class="fln">
+    <a href="#system" id="fn-1">System</a>
+    <a href="#process" id="fn-2">Process</a>
+    <a href="#pricing" id="fn-3">Pricing</a>
+    <a href="#contact" id="fn-4">Contact</a>
+  </div>
+  <p id="fc-p">&copy; 2025 Nexora Systems &middot; nexorasystems.lat &middot; Costa Rica</p>
 </footer>
+
+<!-- CHAT -->
 <div id="chat-widget">
   <div class="chat-panel" id="chat-panel">
     <div class="chat-panel-head"><div class="chat-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg></div><div><div class="chat-name">Nexora AI</div><div class="chat-status2">&#9679; Online &mdash; replies instantly</div></div></div>
-    <div class="chat-messages" id="chat-messages"><div class="cmsg bot">Want to see how Nexora can automate your lead response?</div></div>
+    <div class="chat-messages" id="chat-messages"><div class="cmsg bot" id="chat-init">Want to see how Nexora can automate your lead response?</div></div>
     <div class="chat-options" id="chat-options">
-      <button class="chat-opt" onclick="chatReply('yes')">Yes, show me how it works</button>
-      <button class="chat-opt" onclick="chatReply('demo')">I want to book a demo</button>
-      <button class="chat-opt" onclick="chatReply('more')">Tell me more first</button>
+      <button class="chat-opt" id="co-1" onclick="chatReply('yes')">Yes, show me how it works</button>
+      <button class="chat-opt" id="co-2" onclick="chatReply('demo')">I want to book a demo</button>
+      <button class="chat-opt" id="co-3" onclick="chatReply('more')">Tell me more first</button>
     </div>
   </div>
   <div class="chat-bubble" onclick="toggleChat()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
 </div>
+
 <script>
-const C=document.getElementById('cur'),R=document.getElementById('ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.transform=`translate(${mx-3.5}px,${my-3.5}px)`;});
-(function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;R.style.transform=`translate(${rx-17}px,${ry-17}px)`;requestAnimationFrame(t);})();
-document.addEventListener('mouseover',e=>{const el=e.target.closest('a,button,.step-card,.tc,.metric-card,.pc,.ba-card,.cch,.chat-bubble,.chat-opt,.bplan,.bsend,.btn-primary,.btn-ghost,.lbtn,.ncta,.nlogo');document.body.classList.toggle('hov',!!el);});
-document.addEventListener('mouseout',e=>{if(!e.relatedTarget||!e.relatedTarget.closest('a,button,.step-card,.tc,.metric-card,.pc,.ba-card'))document.body.classList.remove('hov');});
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>44),{passive:true});
-const sids=['home','problem','system','process','results','technology','pricing','cta','contact'];
-const nas=document.querySelectorAll('.nlinks a:not(.ncta)');
-window.addEventListener('scroll',()=>{let cur='home';sids.forEach(id=>{const s=document.getElementById(id);if(s&&scrollY>=s.offsetTop-130)cur=id;});nas.forEach(a=>{a.style.color=a.getAttribute('href')=='#'+cur?'var(--white)':'';});},{passive:true});
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.06});
-document.querySelectorAll('.r').forEach(el=>io.observe(el));
-setTimeout(()=>document.querySelectorAll('#home .r').forEach(el=>el.classList.add('in')),60);
-const cv=document.getElementById('canvas'),cx=cv.getContext('2d');
-let W,H,ns=[];
+'use strict';
+
+/* ── CURSOR ── */
+var C=document.getElementById('cur'),R=document.getElementById('ring'),mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;C.style.transform='translate('+(mx-3.5)+'px,'+(my-3.5)+'px)';});
+(function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;R.style.transform='translate('+(rx-17)+'px,'+(ry-17)+'px)';requestAnimationFrame(t);})();
+document.addEventListener('mouseover',function(e){var el=e.target.closest('a,button,.step-card,.tc,.metric-card,.pc,.ba-card,.cch,.chat-bubble,.chat-opt,.bplan,.bsend,.btn-primary,.btn-ghost,.lbtn,.ncta,.nlogo,.faq-item');document.body.classList.toggle('hov',!!el);});
+document.addEventListener('mouseout',function(e){if(!e.relatedTarget||!e.relatedTarget.closest('a,button,.step-card,.tc,.metric-card,.pc,.ba-card'))document.body.classList.remove('hov');});
+
+/* ── NAV ── */
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>44);},{passive:true});
+var sids=['home','problem','system','process','results','technology','pricing','cta','faq','contact'];
+var nas=document.querySelectorAll('.nlinks a:not(.ncta)');
+window.addEventListener('scroll',function(){
+  var cur='home';
+  sids.forEach(function(id){var s=document.getElementById(id);if(s&&scrollY>=s.offsetTop-130)cur=id;});
+  nas.forEach(function(a){a.style.color=a.getAttribute('href')==='#'+cur?'var(--white)':'';});
+},{passive:true});
+
+/* ── REVEAL ── */
+var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.06});
+document.querySelectorAll('.r').forEach(function(el){io.observe(el);});
+setTimeout(function(){document.querySelectorAll('#home .r').forEach(function(el){el.classList.add('in');});},60);
+
+/* ── CANVAS PARTICLES ── */
+var cv=document.getElementById('canvas'),ctx=cv.getContext('2d'),W,H,ns=[];
 function rsz(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
 rsz();window.addEventListener('resize',rsz,{passive:true});
-for(let i=0;i<75;i++)ns.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.2+.4});
-(function draw(){cx.clearRect(0,0,W,H);ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;});ns.forEach((a,i)=>{ns.slice(i+1).forEach(b=>{const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<125){cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.strokeStyle=`rgba(14,165,233,${.08*(1-d/125)})`;cx.lineWidth=.5;cx.stroke();}});cx.beginPath();cx.arc(a.x,a.y,a.r,0,Math.PI*2);cx.fillStyle='rgba(14,165,233,.18)';cx.fill();});requestAnimationFrame(draw);})();
-const hp=document.getElementById('hparts');
-if(hp){for(let i=0;i<18;i++){const p=document.createElement('div');p.className='hp';p.style.cssText=`left:${Math.random()*100}%;bottom:${Math.random()*25}%;--d:${7+Math.random()*9}s;--dl:${Math.random()*9}s;--dx:${(Math.random()-.5)*70}px;`;hp.appendChild(p);}}
-let lang='en';
-function doSend(btn){btn.innerHTML=lang==='es'?'Sistema activado &#10003;':'System initialized &#10003;';btn.style.background='#059669';btn.disabled=true;}
-let chatOpen=false;
-function toggleChat(){chatOpen=!chatOpen;document.getElementById('chat-panel').classList.toggle('open',chatOpen);}
-const chatFlows={yes:{msg:'The Nexora System captures every lead from Instagram, WhatsApp, and your website, replies in under 60 seconds with AI, and automatically books calls into your calendar. Want to see it live?',opts:[{t:'Book a Demo',a:'book'},{t:'How much does it cost?',a:'price'}]},demo:{msg:'Great choice. Our demo takes less than 15 minutes and shows you exactly how the system works for your specific business.',opts:[{t:'Schedule now',a:'book'},{t:'What type of business do you have?',a:'qualify'}]},more:{msg:'Nexora installs an AI system into your business that responds to every lead instantly. No manual replies. No missed leads. What type of business do you run?',opts:[{t:'Clinic / Health',a:'qualify'},{t:'Real Estate',a:'qualify'},{t:'E-commerce',a:'qualify'},{t:'Other',a:'qualify'}]},price:{msg:'Pricing depends on your volume and channels. All systems are a one-time setup with no monthly fees. The best way to get your exact investment is a quick demo.',opts:[{t:'Book a Demo',a:'book'}]},qualify:{msg:'Based on what you shared, Nexora can significantly increase your lead conversion rate. Would you like to see a quick demo?',opts:[{t:'Yes, schedule a demo',a:'book'},{t:'Not right now',a:'later'}]},book:{msg:'Your demo is being scheduled. Click below to pick a time that works for you.',opts:[{t:'Open Calendly',a:'calendly'}]},later:{msg:'No problem. When you are ready, we are here. Feel free to reach us at hello@nexorasystems.lat',opts:[{t:'Got it, thanks',a:'close'}]},calendly:{msg:'',opts:[]},close:{msg:'',opts:[]}};
-function chatReply(action){if(action==='calendly'){window.open('http://calendly.com/nexorasystems','_blank');return;}if(action==='close'){toggleChat();return;}const flow=chatFlows[action];if(!flow)return;const msgs=document.getElementById('chat-messages');const opts=document.getElementById('chat-options');const m=document.createElement('div');m.className='cmsg bot';m.innerHTML=flow.msg;msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight;opts.innerHTML='';flow.opts.forEach(o=>{const b=document.createElement('button');b.className='chat-opt';b.textContent=o.t;b.onclick=()=>chatReply(o.a);opts.appendChild(b);});}
-const T={en:{'badge':'AI-Powered Lead Conversion System','h1-1':'The AI system that runs','h1-2':'your business automatically.','h1-3':'Every lead. Every time.','hsub':'Capture every lead. Respond instantly. Convert more clients without manual work.','hpromise':'Respond to every lead instantly and convert more clients automatically.','btn-start':'Book a Demo','btn-how':'See How It Works','btn-micro':'Takes less than 2 minutes to schedule','sl-1':'Response time','sl-2':'More booked calls','sl-3':'Always running','sl-4':'Manual replies','urgency':'We are currently onboarding a limited number of clients this month. Spots are limited.','btn-send':'Activate system','fc':'© 2025 Nexora Systems · nexorasystems.lat · Costa Rica'},es:{'badge':'Sistema de IA para conversión de leads','h1-1':'El sistema de IA que maneja','h1-2':'tu negocio automáticamente.','h1-3':'Cada lead. Todo el tiempo.','hsub':'Captura cada lead. Responde al instante. Convierte más clientes sin trabajo manual.','hpromise':'Responde a cada lead al instante y convierte más clientes automáticamente.','btn-start':'Agendar Demo','btn-how':'Ver cómo funciona','btn-micro':'Toma menos de 2 minutos agendar','sl-1':'Tiempo de respuesta','sl-2':'Más llamadas agendadas','sl-3':'Siempre activo','sl-4':'Respuestas manuales','urgency':'Actualmente estamos incorporando un número limitado de clientes este mes. Los cupos son limitados.','btn-send':'Activar sistema','fc':'© 2025 Nexora Systems · nexorasystems.lat · Costa Rica',
-'ey-prob':'El problema','h-prob':'La mayoría de negocios pierde leads antes de responder','p-prob':'Los clientes esperan respuestas inmediatas. La mayoría de negocios tarda horas. Cada demora es ingreso perdido.',
-'ba-before':'Antes de Nexora','ba-after':'Después de Nexora',
-'ba-b1':'El lead envía un DM en Instagram','ba-b2':'El negocio responde 4 horas después','ba-b3':'El lead ya contrató a la competencia','ba-b4':'Ingreso perdido. Para siempre.',
-'ba-a2':'La IA responde en menos de 60 segundos','ba-a3':'El lead es calificado automáticamente','ba-a4':'Llamada agendada. Cliente convertido.',
-'ey-sys':'La solución','h-sys':'Conoce el Sistema Nexora','p-sys':'Una plataforma de automatización con IA que captura, califica y convierte tus leads automáticamente — mientras te enfocas en hacer crecer tu negocio.',
-'chat-status':'Sistema Nexora activo — monitoreando 4 canales — 0 leads perdidos hoy',
-'ey-proc':'Cómo funciona','h-proc':'Cuatro pasos. Completamente automático.','p-proc':'Desde el primer mensaje hasta la llamada agendada — el Sistema Nexora lo maneja todo.',
-'step1-h':'Captura de leads','step1-p':'Captura consultas de Instagram, WhatsApp y tu sitio web automáticamente — las 24 horas del día.',
-'step2-h':'Respuesta inmediata','step2-p':'Responde en segundos con conversaciones de IA similares a un humano, adaptadas a tu negocio y tono.',
-'step3-h':'Calificación inteligente','step3-p':'Identifica compradores serios automáticamente. Solo los leads de alta intención avanzan en tu pipeline.',
-'step4-h':'Agendamiento automático','step4-p':'Agenda llamadas directamente en tu calendario. Sin ida y vuelta. Sin programación manual.',
-'ey-res':'Impacto real','h-res':'Resultados reales para tu negocio','p-res':'Los negocios que usan el Sistema Nexora ven resultados medibles en los primeros 30 días.',
-'m1-h':'Respuesta a cada lead','m1-p':'Antes de Nexora: más de 4 horas en promedio. Después: instantáneo, siempre.',
-'m2-h':'Más llamadas agendadas','m2-p':'Más leads calificados, más llamadas programadas, más clientes convertidos.',
-'m3-h':'Captura de leads, siempre activa','m3-p':'El sistema trabaja mientras duermes. Nunca se pierde un lead.',
-'ey-tech':'La arquitectura','h-tech':'Infraestructura de IA de nivel empresarial','p-tech':'La Plataforma Nexora está construida sobre el mismo stack tecnológico que impulsa a las empresas de mayor crecimiento del mundo.',
-'t1-h':'Motor de conversación IA','t1-p':'GPT-4o impulsa cada conversación — consciente del contexto, multilingüe, indistinguible de un agente humano.',
-'t2-h':'Arquitectura de automatización','t2-p':'300+ integraciones. Flujos ilimitados. Todo el pipeline de leads funciona sin un solo paso manual.',
-'t3-h':'Inteligencia de datos','t3-p':'Cada interacción sincronizada en tiempo real con tu CRM. Visibilidad total del pipeline, sin entrada manual de datos.',
-'t4-h':'Plataforma omnicanal','t4-p':'WhatsApp, Instagram, email — un sistema unificado maneja todos los canales simultáneamente.',
-'t5-h':'Motor de puntuación de leads','t5-p':'Cada prospecto analizado y puntuado en tiempo real. Solo los leads de alta intención entran a tu pipeline.',
-'t6-h':'Automatización de agendamiento','t6-p':'La integración con calendario cierra cada ciclo. Cuando un lead está listo, el sistema agenda la llamada automáticamente.',
-'ey-price':'Elige tu sistema','h-price':'Una inversión. Resultados permanentes.','p-price':'Configuración única. Sin mensualidades. El sistema es completamente tuyo.',
-'ptag':'Más instalado',
-'pf1':'Captura de leads (1 canal)','pf2':'Sistema de calificación IA','pf3':'Motor de respuesta automatizada','pf4':'Configuración de CRM inteligente','pf5':'Optimización de 30 días','pf6':'Plataforma omnicanal','pf7':'Sistema de agendamiento automático',
-'pf8':'Captura de leads (3 canales)','pf9':'Calificación IA + puntuación','pf10':'Plataforma de respuesta omnicanal','pf11':'Motor de agendamiento automático','pf12':'Inteligencia de datos CRM completa','pf13':'Optimización de 60 días','pf14':'Despliegue prioritario',
-'pf15':'Todo lo del plan LeadFlow','pf16':'Todos los canales (WA + IG + Email)','pf17':'Personalidad de IA personalizada','pf18':'Automatización de onboarding','pf19':'Integración de pagos','pf20':'Panel de operaciones','pf21':'Optimización de 90 días',
-'pd1':'Para negocios listos para dejar de perder leads por respuestas lentas.','pd2':'Para negocios en crecimiento que escalan su conversión de leads automáticamente.','pd3':'Para operaciones de alto volumen que necesitan una infraestructura de IA completa.',
-'ey-cta':'Listo para instalar','p-cta':'Empieza a capturar y convertir leads automáticamente hoy. Ve cómo funciona Nexora en una demo rápida.','cta-micro':'Menos de 2 minutos · Sin compromiso',
-'ey-con':'Contáctanos','h-con':'¿Tienes preguntas?<br>Respondemos rápido.','p-con':'Cuéntanos sobre tu negocio. Te respondemos en pocas horas.',
-'cl-wa':'WhatsApp','cl-bk':'Agendar una demo',
-'cv-wa':'+506 7110-3840','cv-em':'hello@nexorasystems.lat','cv-bk':'calendly.com/nexorasystems',
-'fl-fn':'Nombre','fl-ln':'Apellido','fl-em':'Correo de trabajo','fl-bz':'Nombre del negocio','fl-in':'Industria','fl-vo':'Leads mensuales','fl-ms':'Proceso de respuesta actual',
-'opt-ind':'Selecciona tu industria','opt-c1':'Clínica / Salud','opt-c2':'Bienes raíces','opt-c3':'Restaurante / Eventos','opt-c4':'Coach / Consultor','opt-c5':'E-commerce','opt-c6':'Legal / Finanzas','opt-c7':'Otro',
-'opt-r0':'Selecciona un rango'}};
-function setLang(l){lang=l;const t=T[l];document.documentElement.lang=l;document.title=l==='es'?'Nexora — El sistema de IA que maneja tu negocio':'Nexora — The AI System That Runs Your Business Automatically';document.querySelectorAll('.lbtn').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));const nls=document.querySelectorAll('.nlinks a:not(.ncta)');const nk=l==='es'?['Sistema','Proceso','Resultados','Tecnología','Precios','Contacto']:['System','Process','Results','Technology','Pricing','Contact'];nls.forEach((a,i)=>{if(nk[i])a.textContent=nk[i];});const cta=document.querySelector('.ncta');if(cta)cta.textContent=l==='es'?'Agendar Demo':'Book a Demo';const bdg=document.querySelector('.hbadge');if(bdg)bdg.innerHTML='<div class="bdot"></div>'+t['badge'];const ls=document.querySelectorAll('.htitle span');if(ls[0])ls[0].textContent=t['h1-1'];if(ls[1])ls[1].textContent=t['h1-2'];if(ls[2])ls[2].textContent=t['h1-3'];const hs=document.querySelector('.hsub');if(hs)hs.textContent=t['hsub'];const hp2=document.querySelector('.hpromise');if(hp2)hp2.textContent=t['hpromise'];const bp=document.querySelector('.btn-primary');if(bp)bp.innerHTML=t['btn-start']+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';const bg=document.querySelector('.btn-ghost');if(bg)bg.textContent=t['btn-how'];const bm=document.querySelector('.btn-micro');if(bm)bm.textContent=t['btn-micro'];const sls=document.querySelectorAll('.sl');['sl-1','sl-2','sl-3','sl-4'].forEach((k,i)=>{if(sls[i])sls[i].textContent=t[k];});const urg=document.querySelector('.urgency-text');if(urg)urg.textContent=t['urgency'];const ctah=document.querySelector('.cta-title');if(ctah)ctah.innerHTML=l==='es'?'Tu equipo de IA<br>está <em>listo.</em>':'Your AI team<br>is <em>ready.</em>';const bsn=document.querySelector('.bsend');if(bsn&&!bsn.disabled)bsn.textContent=t['btn-send'];const fcp=document.querySelector('footer > p');if(fcp)fcp.textContent=t['fc'];const fln=document.querySelectorAll('.fln a');const flk=l==='es'?['Sistema','Proceso','Precios','Contacto']:['System','Process','Pricing','Contact'];fln.forEach((a,i)=>{if(flk[i])a.textContent=flk[i];});
-document.querySelectorAll('[data-i18n]').forEach(el=>{
-  const k=el.dataset.i18n;
-  if(t[k]!==undefined){
-    if(k==='h-con'||k==='ey-cta'){el.innerHTML=t[k];}
-    else{el.textContent=t[k];}
-  }
+for(var i=0;i<75;i++)ns.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.2+.4});
+(function draw(){
+  ctx.clearRect(0,0,W,H);
+  ns.forEach(function(n){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;});
+  ns.forEach(function(a,i){
+    ns.slice(i+1).forEach(function(b){
+      var d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<125){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle='rgba(14,165,233,'+(.08*(1-d/125))+')';ctx.lineWidth=.5;ctx.stroke();}
+    });
+    ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fillStyle='rgba(14,165,233,.18)';ctx.fill();
+  });
+  requestAnimationFrame(draw);
+})();
+
+/* ── FLOATING HERO PARTICLES ── */
+var hp=document.getElementById('hparts');
+if(hp){for(var i=0;i<18;i++){var p=document.createElement('div');p.className='hp';p.style.cssText='left:'+Math.random()*100+'%;bottom:'+Math.random()*25+'%;--d:'+(7+Math.random()*9)+'s;--dl:'+Math.random()*9+'s;--dx:'+((Math.random()-.5)*70)+'px;';hp.appendChild(p);}}
+
+/* ── SECURITY ── */
+document.getElementById('nx-ts').value = Date.now().toString();
+document.querySelectorAll('a[href^="http"]').forEach(function(a){
+  var r=a.getAttribute('rel')||'';
+  if(!r.includes('noopener'))a.setAttribute('rel',(r+' noopener noreferrer').trim());
 });
-const chatMsgs=document.getElementById('chat-messages');
-if(chatMsgs){const fm=chatMsgs.querySelector('.cmsg.bot');if(fm)fm.textContent=l==='es'?'¿Quieres ver cómo Nexora puede automatizar las respuestas de tu negocio?':'Want to see how Nexora can automate your lead response?';}
-const chatOpts=document.getElementById('chat-options');
-if(chatOpts){const opts=chatOpts.querySelectorAll('.chat-opt');if(opts.length===3){if(l==='es'){opts[0].textContent='Sí, muéstrame cómo funciona';opts[1].textContent='Quiero agendar una demo';opts[2].textContent='Cuéntame más primero';}else{opts[0].textContent='Yes, show me how it works';opts[1].textContent='I want to book a demo';opts[2].textContent='Tell me more first';}}}
-if(l==='es'){chatFlows.yes.msg='El Sistema Nexora captura cada lead de Instagram, WhatsApp y tu sitio web, responde en menos de 60 segundos con IA, y agenda llamadas automáticamente. ¿Quieres verlo en vivo?';chatFlows.yes.opts=[{t:'Agendar una demo',a:'book'},{t:'¿Cuánto cuesta?',a:'price'}];chatFlows.demo.msg='Excelente elección. Nuestra demo toma menos de 15 minutos y te muestra exactamente cómo funciona el sistema para tu negocio.';chatFlows.demo.opts=[{t:'Agendar ahora',a:'book'},{t:'¿Qué tipo de negocio tienes?',a:'qualify'}];chatFlows.more.msg='Nexora instala un sistema de IA en tu negocio que responde a cada lead al instante. Sin respuestas manuales. ¿Qué tipo de negocio tienes?';chatFlows.more.opts=[{t:'Clínica / Salud',a:'qualify'},{t:'Bienes raíces',a:'qualify'},{t:'E-commerce',a:'qualify'},{t:'Otro',a:'qualify'}];chatFlows.price.msg='El precio depende de tu volumen y canales. Todos los sistemas son una configuración única sin mensualidades. La mejor forma de saber tu inversión exacta es una demo rápida.';chatFlows.price.opts=[{t:'Agendar demo',a:'book'}];chatFlows.qualify.msg='Según lo que compartiste, Nexora puede aumentar significativamente tu tasa de conversión de leads. ¿Te gustaría ver una demo rápida?';chatFlows.qualify.opts=[{t:'Sí, agendar una demo',a:'book'},{t:'Ahora no',a:'later'}];chatFlows.book.msg='Tu demo está siendo agendada. Haz clic abajo para elegir el horario que mejor te funcione.';chatFlows.book.opts=[{t:'Abrir Calendly',a:'calendly'}];chatFlows.later.msg='Sin problema. Cuando estés listo, aquí estaremos. Escíbenos a hello@nexorasystems.lat';chatFlows.later.opts=[{t:'Entendido, gracias',a:'close'}];}
-else{chatFlows.yes.msg='The Nexora System captures every lead from Instagram, WhatsApp, and your website, replies in under 60 seconds with AI, and automatically books calls into your calendar. Want to see it live?';chatFlows.yes.opts=[{t:'Book a Demo',a:'book'},{t:'How much does it cost?',a:'price'}];chatFlows.demo.msg='Great choice. Our demo takes less than 15 minutes and shows you exactly how the system works for your specific business.';chatFlows.demo.opts=[{t:'Schedule now',a:'book'},{t:'What type of business do you have?',a:'qualify'}];chatFlows.more.msg='Nexora installs an AI system into your business that responds to every lead instantly. No manual replies. No missed leads. What type of business do you run?';chatFlows.more.opts=[{t:'Clinic / Health',a:'qualify'},{t:'Real Estate',a:'qualify'},{t:'E-commerce',a:'qualify'},{t:'Other',a:'qualify'}];chatFlows.price.msg='Pricing depends on your volume and channels. All systems are a one-time setup with no monthly fees. The best way to get your exact investment is a quick demo.';chatFlows.price.opts=[{t:'Book a Demo',a:'book'}];chatFlows.qualify.msg='Based on what you shared, Nexora can significantly increase your lead conversion rate. Would you like to see a quick demo?';chatFlows.qualify.opts=[{t:'Yes, schedule a demo',a:'book'},{t:'Not right now',a:'later'}];chatFlows.book.msg='Your demo is being scheduled. Click below to pick a time that works for you.';chatFlows.book.opts=[{t:'Open Calendly',a:'calendly'}];chatFlows.later.msg='No problem. When you are ready, we are here. Feel free to reach us at hello@nexorasystems.lat';chatFlows.later.opts=[{t:'Got it, thanks',a:'close'}];}
+var _rl={log:[],ok:function(){var now=Date.now(),l=this.log.filter(function(t){return now-t<60000;});if(l.length>=3)return false;l.push(now);this.log=l;return true;}};
+function sanitize(s){return(typeof s==='string'?s:'').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;').trim().substring(0,1000);}
+function isBot(){var hp=document.getElementById('nx-hp');if(hp&&hp.value!=='')return true;var ts=parseInt(document.getElementById('nx-ts').value||'0',10);return ts>0&&(Date.now()-ts)<3000;}
+
+/* ── FORM SEND ── */
+function doSend(btn){
+  if(isBot()){btn.disabled=true;return;}
+  var warn=document.getElementById('nx-warn');
+  if(!_rl.ok()){warn.textContent=lang==='es'?'Demasiados intentos. Espera un momento.':'Too many attempts. Please wait a moment.';warn.classList.add('show');setTimeout(function(){warn.classList.remove('show');},5000);return;}
+  warn.classList.remove('show');
+  var fn=document.getElementById('f-firstname'),ln=document.getElementById('f-lastname'),em=document.getElementById('f-email'),biz=document.getElementById('f-biz'),ind=document.getElementById('f-industry'),vol=document.getElementById('f-volume');
+  var req=[fn,ln,em,biz,ind,vol];
+  for(var i=0;i<req.length;i++){if(!req[i].value.trim()){req[i].focus();req[i].style.borderColor='rgba(239,68,68,.55)';setTimeout((function(el){return function(){el.style.borderColor='';}})(req[i]),2000);return;}}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)){em.focus();em.style.borderColor='rgba(239,68,68,.55)';setTimeout(function(){em.style.borderColor='';},2000);return;}
+  btn.disabled=true;
+  var origHTML=btn.innerHTML;
+  btn.innerHTML=(lang==='es'?'Enviando...':'Sending...')+' <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  fetch('https://api.web3forms.com/submit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      access_key:'c005d3b0-37da-47ae-ba99-5db5311429df',
+      subject:'New Nexora Lead: '+sanitize(fn.value)+' '+sanitize(ln.value),
+      firstname:sanitize(fn.value),lastname:sanitize(ln.value),
+      email:sanitize(em.value),business:sanitize(biz.value),
+      industry:sanitize(ind.value),volume:sanitize(vol.value),
+      message:sanitize(document.getElementById('f-message').value)
+    })
+  }).then(function(r){return r.json();}).then(function(d){
+    if(d.success){btn.style.background='#059669';btn.innerHTML=lang==='es'?'&#10003; Enviado — te contactamos pronto':'&#10003; Sent — we will contact you soon';}
+    else{btn.disabled=false;btn.innerHTML=origHTML;}
+  }).catch(function(){btn.disabled=false;btn.innerHTML=origHTML;});
+}
+
+/* ── FAQ ── */
+function toggleFAQ(el){var open=el.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open');});if(!open)el.classList.add('open');}
+
+/* ── CHAT ── */
+var chatOpen=false;
+function toggleChat(){chatOpen=!chatOpen;document.getElementById('chat-panel').classList.toggle('open',chatOpen);}
+var chatFlows={
+  yes:{msg:'The Nexora System captures every lead from Instagram, WhatsApp, and your website, replies in under 60 seconds with AI, and automatically books calls into your calendar. Want to see it live?',opts:[{t:'Book a Demo',a:'book'},{t:'How much does it cost?',a:'price'}]},
+  demo:{msg:'Great choice. Our demo takes less than 15 minutes and shows you exactly how the system works for your specific business.',opts:[{t:'Schedule now',a:'book'},{t:'What type of business?',a:'qualify'}]},
+  more:{msg:'Nexora installs an AI system into your business that responds to every lead instantly. No manual replies. No missed leads. What type of business do you run?',opts:[{t:'Clinic / Health',a:'qualify'},{t:'Real Estate',a:'qualify'},{t:'E-commerce',a:'qualify'},{t:'Other',a:'qualify'}]},
+  price:{msg:'Pricing depends on your volume and channels. All systems are a one-time setup with no monthly fees. The best way to get your exact investment is a quick demo.',opts:[{t:'Book a Demo',a:'book'}]},
+  qualify:{msg:'Based on what you shared, Nexora can significantly increase your lead conversion rate. Would you like to see a quick demo?',opts:[{t:'Yes, schedule a demo',a:'book'},{t:'Not right now',a:'later'}]},
+  book:{msg:'Your demo is being scheduled. Click below to pick a time that works for you.',opts:[{t:'Open Calendly',a:'calendly'}]},
+  later:{msg:'No problem. When you are ready, we are here. Reach us at hello@nexorasystems.lat',opts:[{t:'Got it, thanks',a:'close'}]},
+  calendly:{msg:'',opts:[]},close:{msg:'',opts:[]}
+};
+function chatReply(action){if(action==='calendly'){window.open('http://calendly.com/nexorasystems','_blank','noopener,noreferrer');return;}if(action==='close'){toggleChat();return;}var flow=chatFlows[action];if(!flow)return;var msgs=document.getElementById('chat-messages'),opts=document.getElementById('chat-options');var m=document.createElement('div');m.className='cmsg bot';m.textContent=flow.msg;msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight;opts.innerHTML='';flow.opts.forEach(function(o){var b=document.createElement('button');b.className='chat-opt';b.textContent=o.t;b.onclick=function(){chatReply(o.a);};opts.appendChild(b);});}
+
+/* ── i18n ── */
+var lang='en';
+var TR={
+en:{
+  badge:'AI-Powered Lead Conversion System',
+  'h-l1':'The AI system that runs','h-l2':'your business automatically.','h-l3':'Every lead. Every time.',
+  hsub:'Capture every lead. Respond instantly. Convert more clients without manual work.',
+  hpromise:'Respond to every lead instantly and convert more clients automatically.',
+  'h-cta-btn':'Book a Demo','h-ghost':'See How It Works','h-micro':'Takes less than 2 minutes to schedule',
+  'sl-1':'Response time','sl-2':'More booked calls','sl-3':'Always running','sl-4':'Manual replies',
+  'nav-cta':'Book a Demo',
+  'ey-problem':'The problem','h-problem':'Most businesses lose leads before they even reply','p-problem':'Customers expect instant responses. Most businesses take hours. Every delay is lost revenue.',
+  'ba-before-label':'Before Nexora','ba-b1':'Lead sends a DM on Instagram','ba-b2':'Business replies 4 hours later','ba-b3':'Lead already booked a competitor','ba-b4':'Revenue lost. Forever.',
+  'ba-after-label':'After Nexora','ba-a1':'Lead sends a DM on Instagram','ba-a2':'AI replies in under 60 seconds','ba-a3':'Lead is qualified automatically','ba-a4':'Call booked. Client converted.',
+  'ey-system':'The solution','h-system':'Meet the Nexora System','p-system':'An AI-powered automation platform that captures, qualifies, and converts your leads automatically — while you focus on growing your business.',
+  'chat-st':'Nexora System active — monitoring 4 channels — 0 leads missed today',
+  'ey-process':'How it works','h-process':'Four steps. Fully automatic.','p-process':'From the first message to a booked call — the Nexora System handles everything.',
+  's1-h':'Lead Capture','s1-p':'Captures inquiries from Instagram, WhatsApp, and your website automatically — 24 hours a day.',
+  's2-h':'Instant Response','s2-p':'Replies in seconds with human-like AI conversations, tailored to your business and tone.',
+  's3-h':'Smart Qualification','s3-p':'Identifies serious buyers automatically. Only high-intent leads move forward in your pipeline.',
+  's4-h':'Automatic Booking','s4-p':'Books calls directly into your calendar. No back-and-forth. No manual scheduling.',
+  'ey-test':'Social proof','h-test':'What our clients say','p-test':'Real results from businesses that installed the Nexora System.',
+  'ey-results':'Real impact','h-results':'Real business results','p-results':'Businesses using the Nexora System see measurable results within the first 30 days.',
+  'm1-l':'Response to every lead','m1-s':'Before Nexora: 4+ hours on average. After: instant, every time.',
+  'm2-l':'More booked calls','m2-s':'More leads qualified, more calls scheduled, more clients converted.',
+  'm3-l':'Lead capture, always on','m3-s':'The system works while you sleep. No lead is ever missed again.',
+  'ey-tech':'The architecture','h-tech':'Enterprise-grade AI infrastructure','p-tech':'The Nexora Platform is built on the same technology stack powering the world\'s fastest-growing companies.',
+  't1-h':'AI Conversation Engine','t1-p':'GPT-4o powers every conversation — context-aware, multilingual, indistinguishable from a human agent.',
+  't2-h':'Automation Architecture','t2-p':'300+ integrations. Unlimited workflows. The entire lead pipeline runs without a single manual step.',
+  't3-h':'Data Intelligence','t3-p':'Every interaction synced in real-time to your CRM. Full pipeline visibility, zero manual data entry.',
+  't4-h':'Omnichannel Platform','t4-p':'WhatsApp, Instagram, email — one unified system handles all channels simultaneously.',
+  't5-h':'Lead Scoring Engine','t5-p':'Every prospect analyzed and scored in real-time. Only high-intent leads enter your pipeline.',
+  't6-h':'Booking Automation','t6-p':'Calendar integration closes every cycle. When a lead is ready, the system books the call automatically.',
+  'ey-pricing':'Choose your system','h-pricing':'One investment. Permanent results.','p-pricing':'One-time setup. No monthly fees. The system is yours completely.',
+  'ptag':'Most installed',
+  'pt-1':'Basic','ph-1':'Nexora Growth Engine','pd-1':'For businesses ready to stop losing leads to slow response times.',
+  'pf-1a':'Lead capture (1 channel)','pf-1b':'AI qualification system','pf-1c':'Automated response engine','pf-1d':'CRM intelligence setup','pf-1e':'30-day optimization','pf-1f':'Omnichannel platform','pf-1g':'Automatic booking system',
+  'pt-2':'Professional','ph-2':'Nexora LeadFlow System','pd-2':'For growing businesses scaling their lead conversion automatically.',
+  'pf-2a':'Lead capture (3 channels)','pf-2b':'AI qualification + scoring','pf-2c':'Omnichannel response platform','pf-2d':'Automatic booking engine','pf-2e':'Full CRM data intelligence','pf-2f':'60-day optimization','pf-2g':'Priority deployment',
+  'pt-3':'Enterprise','ph-3':'Nexora Growth Engine Pro','pd-3':'For high-volume operations that need a complete AI infrastructure.',
+  'pf-3a':'Everything in LeadFlow','pf-3b':'All channels (WA + IG + Email)','pf-3c':'Custom AI personality','pf-3d':'Client onboarding automation','pf-3e':'Payment integration','pf-3f':'Operations dashboard','pf-3g':'90-day optimization',
+  'urgency-txt':'We are currently onboarding a limited number of clients this month. Spots are limited.',
+  'bplan-1':'Book a Demo','bplan-2':'Book a Demo','bplan-3':'Book a Demo',
+  'ey-cta':'Ready to install','p-cta':'Start capturing and converting leads automatically today. See how Nexora works in a short demo.','cta-micro':'Takes less than 2 minutes · No commitment required',
+  'ey-faq':'FAQ','h-faq':'Frequently Asked <em style="color:var(--blue);font-style:normal;">Questions</em>','p-faq':'Everything you need to know about working with Nexora Systems.',
+  'fq-1':'How long does the setup take?','fa-1':'Most clients are fully set up and live within 5–7 business days. We handle the entire installation — you just provide access to your channels and we take it from there.',
+  'fq-2':'Do you offer ongoing support?','fa-2':'Yes. Every plan includes an optimization period (30, 60 or 90 days) where we monitor, adjust, and improve the system based on real results.',
+  'fq-3':'Which channels does Nexora connect to?','fa-3':'WhatsApp, Instagram DMs, Facebook Messenger, email, and your website contact forms. Professional covers 3 channels and Enterprise covers all simultaneously.',
+  'fq-4':'Is the AI personalized to my business?','fa-4':'Yes. We train the AI on your specific services, pricing, tone of voice, and FAQs. It responds exactly as your best sales person would — 24 hours a day.',
+  'fq-5':'Are there monthly fees after setup?','fa-5':'No. The Nexora System is a one-time investment. There are no recurring platform fees from us.',
+  'fq-6':'What if I need changes after launch?','fa-6':'During your optimization period, changes are included. After that, we offer affordable update packages.',
+  'ey-contact':'Get in touch','h-contact':'Have questions?<br>We respond fast.','p-contact':'Tell us about your business. We will get back to you within a few hours.',
+  'cl-wa':'WhatsApp','cl-em':'Email','cl-cal':'Book a demo',
+  'fl-fn':'First name','fl-ln':'Last name','fl-em':'Business email','fl-biz':'Business name','fl-ind':'Industry','fl-leads':'Monthly leads','fl-msg':'Current response process',
+  'send-txt':'Activate system',
+  'fn-1':'System','fn-2':'Process','fn-3':'Pricing','fn-4':'Contact',
+  'fc-p':'© 2025 Nexora Systems · nexorasystems.lat · Costa Rica',
+  'nav-1':'System','nav-2':'Process','nav-3':'Results','nav-4':'Technology','nav-5':'Pricing','nav-6':'Contact',
+  'chat-init':'Want to see how Nexora can automate your lead response?',
+  'co-1':'Yes, show me how it works','co-2':'I want to book a demo','co-3':'Tell me more first'
+},
+es:{
+  badge:'Sistema de IA para conversión de leads',
+  'h-l1':'El sistema de IA que maneja','h-l2':'tu negocio automáticamente.','h-l3':'Cada lead. Todo el tiempo.',
+  hsub:'Captura cada lead. Responde al instante. Convierte más clientes sin trabajo manual.',
+  hpromise:'Responde a cada lead al instante y convierte más clientes automáticamente.',
+  'h-cta-btn':'Agendar Demo','h-ghost':'Ver cómo funciona','h-micro':'Toma menos de 2 minutos agendar',
+  'sl-1':'Tiempo de respuesta','sl-2':'Más llamadas agendadas','sl-3':'Siempre activo','sl-4':'Respuestas manuales',
+  'nav-cta':'Agendar Demo',
+  'ey-problem':'El problema','h-problem':'La mayoría de negocios pierde leads antes de responder','p-problem':'Los clientes esperan respuestas inmediatas. La mayoría de negocios tarda horas. Cada demora es ingreso perdido.',
+  'ba-before-label':'Antes de Nexora','ba-b1':'El lead envía un DM en Instagram','ba-b2':'El negocio responde 4 horas después','ba-b3':'El lead ya contrató a la competencia','ba-b4':'Ingreso perdido. Para siempre.',
+  'ba-after-label':'Después de Nexora','ba-a1':'El lead envía un DM en Instagram','ba-a2':'La IA responde en menos de 60 segundos','ba-a3':'El lead es calificado automáticamente','ba-a4':'Llamada agendada. Cliente convertido.',
+  'ey-system':'La solución','h-system':'Conoce el Sistema Nexora','p-system':'Una plataforma de automatización con IA que captura, califica y convierte tus leads automáticamente — mientras te enfocas en hacer crecer tu negocio.',
+  'chat-st':'Sistema Nexora activo — monitoreando 4 canales — 0 leads perdidos hoy',
+  'ey-process':'Cómo funciona','h-process':'Cuatro pasos. Completamente automático.','p-process':'Desde el primer mensaje hasta la llamada agendada — el Sistema Nexora lo maneja todo.',
+  's1-h':'Captura de leads','s1-p':'Captura consultas de Instagram, WhatsApp y tu sitio web automáticamente — las 24 horas del día.',
+  's2-h':'Respuesta inmediata','s2-p':'Responde en segundos con conversaciones de IA similares a un humano, adaptadas a tu negocio y tono.',
+  's3-h':'Calificación inteligente','s3-p':'Identifica compradores serios automáticamente. Solo los leads de alta intención avanzan en tu pipeline.',
+  's4-h':'Agendamiento automático','s4-p':'Agenda llamadas directamente en tu calendario. Sin ida y vuelta. Sin programación manual.',
+  'ey-test':'Prueba social','h-test':'Lo que dicen nuestros clientes','p-test':'Resultados reales de negocios que instalaron el Sistema Nexora.',
+  'ey-results':'Impacto real','h-results':'Resultados reales para tu negocio','p-results':'Los negocios que usan el Sistema Nexora ven resultados medibles en los primeros 30 días.',
+  'm1-l':'Respuesta a cada lead','m1-s':'Antes de Nexora: más de 4 horas en promedio. Después: instantáneo, siempre.',
+  'm2-l':'Más llamadas agendadas','m2-s':'Más leads calificados, más llamadas programadas, más clientes convertidos.',
+  'm3-l':'Captura de leads, siempre activa','m3-s':'El sistema trabaja mientras duermes. Nunca se pierde un lead.',
+  'ey-tech':'La arquitectura','h-tech':'Infraestructura de IA de nivel empresarial','p-tech':'La Plataforma Nexora está construida sobre el mismo stack tecnológico que impulsa a las empresas de mayor crecimiento del mundo.',
+  't1-h':'Motor de conversación IA','t1-p':'GPT-4o impulsa cada conversación — consciente del contexto, multilingüe, indistinguible de un agente humano.',
+  't2-h':'Arquitectura de automatización','t2-p':'300+ integraciones. Flujos ilimitados. Todo el pipeline de leads funciona sin un solo paso manual.',
+  't3-h':'Inteligencia de datos','t3-p':'Cada interacción sincronizada en tiempo real con tu CRM. Visibilidad total del pipeline, sin entrada manual de datos.',
+  't4-h':'Plataforma omnicanal','t4-p':'WhatsApp, Instagram, email — un sistema unificado maneja todos los canales simultáneamente.',
+  't5-h':'Motor de puntuación de leads','t5-p':'Cada prospecto analizado y puntuado en tiempo real. Solo los leads de alta intención entran a tu pipeline.',
+  't6-h':'Automatización de agendamiento','t6-p':'La integración con calendario cierra cada ciclo. Cuando un lead está listo, el sistema agenda la llamada automáticamente.',
+  'ey-pricing':'Elige tu sistema','h-pricing':'Una inversión. Resultados permanentes.','p-pricing':'Configuración única. Sin mensualidades. El sistema es completamente tuyo.',
+  'ptag':'Más instalado',
+  'pt-1':'Básico','ph-1':'Nexora Growth Engine','pd-1':'Para negocios listos para dejar de perder leads por respuestas lentas.',
+  'pf-1a':'Captura de leads (1 canal)','pf-1b':'Sistema de calificación IA','pf-1c':'Motor de respuesta automatizada','pf-1d':'Configuración de CRM inteligente','pf-1e':'Optimización de 30 días','pf-1f':'Plataforma omnicanal','pf-1g':'Sistema de agendamiento automático',
+  'pt-2':'Profesional','ph-2':'Nexora LeadFlow System','pd-2':'Para negocios en crecimiento que escalan su conversión de leads automáticamente.',
+  'pf-2a':'Captura de leads (3 canales)','pf-2b':'Calificación IA + puntuación','pf-2c':'Plataforma de respuesta omnicanal','pf-2d':'Motor de agendamiento automático','pf-2e':'Inteligencia de datos CRM completa','pf-2f':'Optimización de 60 días','pf-2g':'Despliegue prioritario',
+  'pt-3':'Empresarial','ph-3':'Nexora Growth Engine Pro','pd-3':'Para operaciones de alto volumen que necesitan una infraestructura de IA completa.',
+  'pf-3a':'Todo lo del plan LeadFlow','pf-3b':'Todos los canales (WA + IG + Email)','pf-3c':'Personalidad de IA personalizada','pf-3d':'Automatización de onboarding de clientes','pf-3e':'Integración de pagos','pf-3f':'Panel de operaciones','pf-3g':'Optimización de 90 días',
+  'urgency-txt':'Actualmente estamos incorporando un número limitado de clientes este mes. Los cupos son limitados.',
+  'bplan-1':'Agendar Demo','bplan-2':'Agendar Demo','bplan-3':'Agendar Demo',
+  'ey-cta':'Listo para instalar','p-cta':'Empieza a capturar y convertir leads automáticamente hoy. Ve cómo funciona Nexora en una demo rápida.','cta-micro':'Menos de 2 minutos · Sin compromiso',
+  'ey-faq':'Preguntas Frecuentes','h-faq':'Preguntas <em style="color:var(--blue);font-style:normal;">Frecuentes</em>','p-faq':'Todo lo que necesitas saber sobre trabajar con Nexora Systems.',
+  'fq-1':'¿Cuánto tiempo toma la configuración?','fa-1':'La mayoría de clientes están completamente configurados y activos en 5-7 días hábiles. Nosotros manejamos toda la instalación — solo necesitas darnos acceso a tus canales.',
+  'fq-2':'¿Ofrecen soporte continuo?','fa-2':'Sí. Cada plan incluye un período de optimización (30, 60 o 90 días) donde monitoreamos, ajustamos y mejoramos el sistema basándonos en resultados reales.',
+  'fq-3':'¿A qué canales se conecta Nexora?','fa-3':'WhatsApp, Instagram DMs, Facebook Messenger, email y formularios de tu sitio web. El plan Profesional cubre 3 canales y el Empresarial cubre todos simultáneamente.',
+  'fq-4':'¿La IA se personaliza para mi negocio?','fa-4':'Sí. Entrenamos la IA con tus servicios específicos, precios, tono de voz y preguntas frecuentes. Responde exactamente como lo haría tu mejor vendedor — las 24 horas.',
+  'fq-5':'¿Hay mensualidades después de la configuración?','fa-5':'No. El Sistema Nexora es una inversión única. No hay tarifas de plataforma recurrentes de nuestra parte.',
+  'fq-6':'¿Qué pasa si necesito cambios después del lanzamiento?','fa-6':'Durante tu período de optimización, los cambios están incluidos. Después ofrecemos paquetes de actualización accesibles.',
+  'ey-contact':'Contáctanos','h-contact':'¿Tienes preguntas?<br>Respondemos rápido.','p-contact':'Cuéntanos sobre tu negocio. Te respondemos en pocas horas.',
+  'cl-wa':'WhatsApp','cl-em':'Email','cl-cal':'Agendar una demo',
+  'fl-fn':'Nombre','fl-ln':'Apellido','fl-em':'Correo empresarial','fl-biz':'Nombre del negocio','fl-ind':'Industria','fl-leads':'Leads mensuales','fl-msg':'Proceso de respuesta actual',
+  'send-txt':'Activar sistema',
+  'fn-1':'Sistema','fn-2':'Proceso','fn-3':'Precios','fn-4':'Contacto',
+  'fc-p':'© 2025 Nexora Systems · nexorasystems.lat · Costa Rica',
+  'nav-1':'Sistema','nav-2':'Proceso','nav-3':'Resultados','nav-4':'Tecnología','nav-5':'Precios','nav-6':'Contacto',
+  'chat-init':'¿Quieres ver cómo Nexora puede automatizar las respuestas de tu negocio?',
+  'co-1':'Sí, muéstrame cómo funciona','co-2':'Quiero agendar una demo','co-3':'Cuéntame más primero'
+}
+};
+
+function tx(id,html){var el=document.getElementById(id);if(!el)return;if(html)el.innerHTML=html;else el.textContent=html;}
+function setLang(l){
+  lang=l;var t=TR[l];
+  document.documentElement.lang=l;
+  document.title=l==='es'?'Nexora — El sistema de IA que maneja tu negocio':'Nexora — The AI System That Runs Your Business Automatically';
+  document.querySelectorAll('.lbtn').forEach(function(b){b.classList.toggle('on',b.textContent===l.toUpperCase());});
+  /* Apply all translations by ID */
+  Object.keys(t).forEach(function(k){
+    var el=document.getElementById(k);
+    if(!el) return;
+    /* Elements that need innerHTML (contain em tags) */
+    var html_keys=['h-faq','h-contact'];
+    if(html_keys.indexOf(k)>=0) el.innerHTML=t[k];
+    else el.textContent=t[k];
+  });
+  /* CTA title special case */
+  var ctaTi=document.getElementById('h-cta');
+  if(ctaTi) ctaTi.innerHTML=l==='es'?'Tu equipo de IA<br>está <em>listo.</em>':'Your AI team<br>is <em>ready.</em>';
+  /* CTA btn */
+  var ctaBtn=document.getElementById('cta-btn');
+  if(ctaBtn) ctaBtn.innerHTML=t['h-cta-btn']+' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  /* Hero primary btn */
+  var hBtn=document.getElementById('h-cta');
+  /* (already handled above via id loop — h-cta is the CTA title, not btn — btn uses different id) */
+  /* Badge */
+  var bdg=document.querySelector('.hbadge');
+  if(bdg) bdg.innerHTML='<div class="bdot"></div>'+t['badge'];
+  /* Nav links */
+  for(var i=1;i<=6;i++){var a=document.getElementById('nl-'+i);if(a&&t['nav-'+i])a.textContent=t['nav-'+i];}
+  var nc=document.getElementById('nav-cta');if(nc)nc.textContent=t['nav-cta'];
+  /* Hero btn primary */
+  var hbp=document.querySelector('#home .btn-primary');
+  if(hbp) hbp.innerHTML=t['h-cta-btn']+' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  var hbg=document.querySelector('#home .btn-ghost');if(hbg)hbg.textContent=t['h-ghost'];
+  /* Footer */
+  var fcp=document.getElementById('fc-p');if(fcp)fcp.textContent=t['fc-p'];
+  /* Send btn */
+  var sb=document.getElementById('send-btn');
+  if(sb&&!sb.disabled)sb.innerHTML=t['send-txt']+' <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  /* Chat */
+  var ci=document.getElementById('chat-init');if(ci)ci.textContent=t['chat-init'];
+  var co1=document.getElementById('co-1');if(co1)co1.textContent=t['co-1'];
+  var co2=document.getElementById('co-2');if(co2)co2.textContent=t['co-2'];
+  var co3=document.getElementById('co-3');if(co3)co3.textContent=t['co-3'];
+  /* Chat flows */
+  if(l==='es'){
+    chatFlows.yes.msg='El Sistema Nexora captura cada lead de Instagram, WhatsApp y tu sitio web, responde en menos de 60 segundos con IA, y agenda llamadas automáticamente. ¿Quieres verlo en vivo?';
+    chatFlows.yes.opts=[{t:'Agendar demo',a:'book'},{t:'¿Cuánto cuesta?',a:'price'}];
+    chatFlows.demo.msg='Excelente elección. Nuestra demo toma menos de 15 minutos y te muestra exactamente cómo funciona para tu negocio.';
+    chatFlows.demo.opts=[{t:'Agendar ahora',a:'book'},{t:'¿Qué tipo de negocio tienes?',a:'qualify'}];
+    chatFlows.more.msg='Nexora instala un sistema de IA que responde a cada lead al instante. Sin respuestas manuales. ¿Qué tipo de negocio tienes?';
+    chatFlows.more.opts=[{t:'Clínica / Salud',a:'qualify'},{t:'Bienes raíces',a:'qualify'},{t:'E-commerce',a:'qualify'},{t:'Otro',a:'qualify'}];
+    chatFlows.price.msg='El precio depende de tu volumen y canales. Todos son configuración única sin mensualidades.';
+    chatFlows.price.opts=[{t:'Agendar demo',a:'book'}];
+    chatFlows.qualify.msg='Nexora puede aumentar significativamente tu tasa de conversión. ¿Te gustaría ver una demo?';
+    chatFlows.qualify.opts=[{t:'Sí, agendar demo',a:'book'},{t:'Ahora no',a:'later'}];
+    chatFlows.book.msg='Tu demo está siendo agendada. Haz clic abajo para elegir el horario.';
+    chatFlows.book.opts=[{t:'Abrir Calendly',a:'calendly'}];
+    chatFlows.later.msg='Sin problema. Escríbenos a hello@nexorasystems.lat cuando estés listo.';
+    chatFlows.later.opts=[{t:'Entendido, gracias',a:'close'}];
+  } else {
+    chatFlows.yes.msg='The Nexora System captures every lead from Instagram, WhatsApp, and your website, replies in under 60 seconds with AI, and automatically books calls. Want to see it live?';
+    chatFlows.yes.opts=[{t:'Book a Demo',a:'book'},{t:'How much does it cost?',a:'price'}];
+    chatFlows.demo.msg='Great choice. Our demo takes less than 15 minutes and shows you exactly how the system works for your specific business.';
+    chatFlows.demo.opts=[{t:'Schedule now',a:'book'},{t:'What type of business?',a:'qualify'}];
+    chatFlows.more.msg='Nexora installs an AI system that responds to every lead instantly. What type of business do you run?';
+    chatFlows.more.opts=[{t:'Clinic / Health',a:'qualify'},{t:'Real Estate',a:'qualify'},{t:'E-commerce',a:'qualify'},{t:'Other',a:'qualify'}];
+    chatFlows.price.msg='All systems are a one-time setup with no monthly fees.';chatFlows.price.opts=[{t:'Book a Demo',a:'book'}];
+    chatFlows.qualify.msg='Based on what you shared, Nexora can significantly increase your conversion rate.';
+    chatFlows.qualify.opts=[{t:'Yes, schedule a demo',a:'book'},{t:'Not right now',a:'later'}];
+    chatFlows.book.msg='Your demo is being scheduled. Click below to pick a time.';chatFlows.book.opts=[{t:'Open Calendly',a:'calendly'}];
+    chatFlows.later.msg='No problem. Reach us at hello@nexorasystems.lat';chatFlows.later.opts=[{t:'Got it, thanks',a:'close'}];
+  }
 }
 </script>
 </body>
